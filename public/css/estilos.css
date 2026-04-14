@@ -1,0 +1,187 @@
+/* Este es el fondo de la barra */
+.nav-de-tatamihub {
+    background-color: #000000 !important; /* Negro */
+    border-bottom: 2px solid #ed1c24;    /* Una línea roja abajo */
+}
+
+/* Este es el color de las letras (Home, Productos, etc.) */
+.nav-de-tatamihub .nav-link {
+    color: white !important;
+}
+
+/* Este es el color de las letras cuando pasás el mouse */
+.nav-de-tatamihub .nav-link:hover {
+    color: #ed1c24 !important; /* Rojo al pasar el mouse */
+}
+
+/* Este es el color del nombre "TatamiHub" a la izquierda */
+.nav-de-tatamihub .navbar-brand {
+    color: white !important;
+    font-weight: bold;
+}
+
+.animated-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: rgb(223, 8, 8);
+  box-shadow: 0 0 0 2px rgb(240, 6, 6);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button svg {
+  position: absolute;
+  width: 24px;
+  fill: rgb(216, 13, 13);
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .arr-1 {
+  right: 16px;
+}
+
+.animated-button .arr-2 {
+  left: -25%;
+}
+
+.animated-button .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 4, 4);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: #212121;
+  border-radius: 12px;
+}
+
+.animated-button:hover .arr-1 {
+  right: -25%;
+}
+
+.animated-button:hover .arr-2 {
+  left: 16px;
+}
+
+.animated-button:hover .text {
+  transform: translateX(12px);
+}
+
+.animated-button:hover svg {
+  fill: #212121;
+}
+
+.animated-button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px rgb(224, 8, 8);
+}
+
+.animated-button:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 1;
+}
+
+.banner-img {
+    height: 400px; /* Ajustá este número si lo querés más finito (ej: 300px) */
+    object-fit: cover; /* Recorta la imagen para que llene el espacio sin estirarse */
+    background-color: #000;
+    object-fit: contain;
+    object-position: center; /* Centra la imagen para que no se pierda el protagonista */
+}
+
+/* Opcional: Borde rojo superior e inferior para que pegue con la marca */
+#carouselExampleInterval {
+    border-top: 3px solid #ed1c24;
+    border-bottom: 3px solid #ed1c24;
+}
+
+.info-banner {
+    background-color: #808080; /* El gris de tu captura */
+    padding: 40px 0;
+    color: white;
+}
+
+.info-icon {
+    font-size: 2.5rem; /* Tamaño del icono */
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.info-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.info-text {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.4;
+    max-width: 200px;
+    margin: 0 auto; /* Centra el texto */
+}
+
+/* Efecto opcional: Que el icono cambie a rojo al pasar el mouse */
+.info-banner div:hover .info-icon {
+    color: #ed1c24;
+    transition: 0.3s;
+}
+
+.card-title {
+    color: #db0075;
+}
+.card-text {
+    color: #17E6E6;
+}
+.list-inline-item {
+    color: #ffd700
+}
+.price {
+    color: #d92644;
+}
+.btn-pink {
+    background-color: #fcb2b2 !important;
+}
+
+.card-img-top {
+    height: 50px;
+    object-fit: contain; /* Esto centra la imagen sin estirarla */
+    padding: 10px;
+}
+
+.card-producto {
+    background-color: #f8f9fa; /* Un gris claro pero definido */
+    transition: transform 0.3s ease; /* Bonus: para que se mueva al pasar el mouse */
+}
+
+.card-producto:hover {
+    background-color: #f0f0f0; /* Se oscurece un pelito cuando pasás el mouse */
+    transform: translateY(-5px); /* Se levanta un poquito */
+}

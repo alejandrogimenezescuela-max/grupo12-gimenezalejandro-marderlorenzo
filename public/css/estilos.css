@@ -185,3 +185,14 @@
     background-color: #f0f0f0; /* Se oscurece un pelito cuando pasás el mouse */
     transform: translateY(-5px); /* Se levanta un poquito */
 }
+
+.carnet-hover{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+
+}
+
+.carnet-hover:hover{
+    transform: translateY(-15px);
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.3));
+}

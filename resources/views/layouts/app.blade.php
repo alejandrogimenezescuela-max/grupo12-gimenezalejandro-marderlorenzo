@@ -18,13 +18,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Catalogo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Nosotros</a>
+          <a class="nav-link" href="/nosotros">Nosotros</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contacto</a>

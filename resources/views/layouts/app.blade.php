@@ -24,10 +24,16 @@
           <a class="nav-link" href="#">Catalogo</a>
         </li>
         <li class="nav-item">
+        <a class="nav-link" href="{{ url('/comercializacion') }}">Comercialización</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/nosotros">Nosotros</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contacto</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{ url('/terminos') }}">Términos y Usos</a>
         </li>
       </ul>
     </div>

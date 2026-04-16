@@ -62,4 +62,68 @@
     </div>
 </div>
 
+<div class = "container my-5 text-center">
+    <div class = "row">
+
+
+<div class="container my-1 py-5 text-center">
+    <div class="row justify-content-center mb-5">
+        <div class="col-auto">
+            <h1 class="fw-bold text-uppercase" style="color: #ed1c24; letter-spacing: -1px; font-size: 3rem;">
+                Nuestra filosofía
+            </h1>
+            <div style="background-color: #ed1c24; height: 5px; width: 100px; border-radius: 2px;" class="mx-auto"></div>
+        </div>
+    </div>
+       <div class= "container my-1 py-3 text center">
+        <div class = "row justify-content-center mb-5">
+            <class text-dark style = font-size: 1.1rem; line-height: 1.8;>
+                <h1> En <span class="fw-bold" style="color: #ed1c24;">TATAMIHUB</span>  entendemos que el tatami es un lugar sagrado donde se forja el carácter. Nuestra filosofía no se basa solo en vender productos, sino en acompañar el proceso de cada practicante, desde el cinturón blanco hasta el maestro.
+                </h1>
+            </div>
+        </div>
+
+        <div class="container my-1 py-5 text-center">
+    <div class="row justify-content-center mb-5">
+        <div class="col-auto">
+            <h1 class="fw-bold text-uppercase" style="color: #ed1c24; letter-spacing: -1px; font-size: 3rem;">
+                Preguntas frecuentes
+            </h1>
+            <div style="background-color: #ed1c24; height: 5px; width: 100px; border-radius: 2px;" class="mx-auto"></div>
+        </div>
+
+         <div class= "container my-1 py-3 text center">
+        <div class = "row justify-content-center mb-5">
+            <class text-dark style = font-size: 1.1rem; line-height: 1.8;>
+                <h2>  <span class="fw-bold" style="color: #ed1c24;">¿Hacen envios al todo el país?</span></h2>
+                <p class= "lead text-dark" style="line-height: 2;
+                    ">Si, hacemos envios a todo el pais, mediante empresas lideres como <strong>OCA</strong> o <strong>Andreani</strong></p>
+                     <h2>  <span class="fw-bold" style="color: #ed1c24;">¿Los kimonos vienen con cinturón incluido?</span></h2>
+                     <p class= "lead text-dark" style="line-height: 2;
+                    ">Por lo general los Kimonos de BJJ y Judo se venden por separado del cinturon, a no ser que el kit especifique lo contrario</p>
+                        <h2>  <span class="fw-bold" style="color: #ed1c24;">¿Tienen tienda física?</span></h2>
+                        <p class= "lead text-dark" style="line-height: 2;
+                        ">Sí, nos encontramos en Av.Centenario 3535 (Centenario Shopping) Local 15 Corrientes podes tener más info de nuestra ubicación en el boton de abajo"</p>
+
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-0">
+            <a href="{{ url('/construccion') }}" style="text-decoration: none;">
+<button class="animated-button">
+  <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+    ></path>
+  </svg>
+  <span class="text">Contactanos</span>
+  <span class="circle"></span>
+  <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+    ></path>
+  </svg>
+</button>
+</div>
+
 @endsection

@@ -17,3 +17,7 @@ Route::get('/comercializacion', function () {
 Route::get('/terminos', function () {
     return view('terminos');
 });
+
+Route::get('/construccion', function () {
+    return view('construccion');
+});

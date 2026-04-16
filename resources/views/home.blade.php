@@ -34,20 +34,18 @@
 </div>
 
 <div class="d-flex justify-content-center mt-5">
-<button class="animated-button">
-  <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-    ></path>
-  </svg>
-  <span class="text">Ver Catálogo</span>
-  <span class="circle"></span>
-  <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-    ></path>
-  </svg>
-</button>
+  <a href="{{ url('/construccion') }}" class="d-inline-block" style="text-decoration: none;">
+    <button class="animated-button">
+      <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+      </svg>
+      <span class="text">Ver Catálogo</span>
+      <span class="circle"></span>
+      <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+      </svg>
+    </button>
+  </a>
 </div>
 
     <div class="text-center mt-5 mb-4">
@@ -62,40 +60,40 @@
 
         <div class="carousel-item active">
             <div class="container">
-                <div class="row g-4">
+                <div class="row g-4 justify-content-center">
                     <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0 card-producto">
+                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
                             <div class="text-center p-3">
-                                <img src="{{ asset('img/producto1.png') }}" class="card-img-top" alt="Kimono" style="width: 50%; height: auto;">
+                                <img src="{{ asset('img/producto1.png') }}" class="img-fluid" alt="Kimono" style="max-height: 200px; width: auto;">
                             </div>
                             <div class="card-body text-center">
                                 <h5 class="card-title text-dark fw-bold">Kimono Shiai</h5>
                                 <p class="text-danger fw-bold">$133.100</p>
-                                <a href="#" class="btn btn-dark btn-sm">Ver más</a>
+                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 d-none d-md-block">
-                        <div class="card h-100 shadow-sm border-0 card-producto">
+                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
                             <div class="text-center p-3">
-                                <img src="{{ asset('img/producto2.png') }}" class="card-img-top" alt="Guantes" style="width: 50%; height: auto;">
+                                <img src="{{ asset('img/producto2.png') }}" class="img-fluid" alt="Guantes" style="max-height: 200px; width: auto;">
                             </div>
                             <div class="card-body text-center">
                                 <h5 class="card-title text-dark fw-bold">Guantes Bronx 14/16Oz</h5>
                                 <p class="text-danger fw-bold">$45.000</p>
-                                <a href="#" class="btn btn-dark btn-sm">Ver más</a>
+                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 d-none d-md-block">
-                        <div class="card h-100 shadow-sm border-0 card-producto">
+                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
                             <div class="text-center p-3">
-                                <img src="{{ asset('img/producto3.png') }}" class="card-img-top" alt="Suplemento" style="width: 50%; height: auto;">
+                                <img src="{{ asset('img/producto3.png') }}" class="img-fluid" alt="Suplemento" style="max-height: 200px; width: auto;">
                             </div>
                             <div class="card-body text-center">
                                 <h5 class="card-title text-dark fw-bold">Creatine MONOHYDRATE</h5>
                                 <p class="text-danger fw-bold">$62.300</p>
-                                <a href="#" class="btn btn-dark btn-sm">Ver más</a>
+                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
                             </div>
                         </div>
                     </div>
@@ -105,40 +103,40 @@
 
         <div class="carousel-item">
             <div class="container">
-                <div class="row g-4">
+                <div class="row g-4 justify-content-center">
                     <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0 bg-light card-producto">
+                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
                             <div class="text-center p-3">
-                                <img src="{{ asset('img/producto4.png') }}" class="card-img-top" alt="Tibial" style="width: 50%; height: auto;">
+                                <img src="{{ asset('img/producto4.png') }}" class="img-fluid" alt="Tibial" style="max-height: 200px; width: auto;">
                             </div>
                             <div class="card-body text-center">
                                 <h5 class="card-title text-dark fw-bold">Tibial Bronx</h5>
                                 <p class="text-danger fw-bold">$70.500</p>
-                                <a href="#" class="btn btn-dark btn-sm">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0 bg-light card-producto">
-                            <div class="text-center p-3">
-                                <img src="{{ asset('img/producto5.png') }}" class="card-img-top" alt="Faixa" style="width: 50%; height: auto;">
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title text-dark fw-bold">Faixa Brazilian Jiu Jitsu Shiai</h5>
-                                <p class="text-danger fw-bold">$25.000</p>
-                                <a href="#" class="btn btn-dark btn-sm">Ver más</a>
+                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 d-none d-md-block">
-                        <div class="card h-100 shadow-sm border-0 bg-light card-producto">
+                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
                             <div class="text-center p-3">
-                                <img src="{{ asset('img/producto6.png') }}" class="card-img-top" alt="Protector Bucal" style="width: 50%; height: auto;">
+                                <img src="{{ asset('img/producto5.png') }}" class="img-fluid" alt="Faixa" style="max-height: 200px; width: auto;">
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title text-dark fw-bold">Faixa BJJ Shiai</h5>
+                                <p class="text-danger fw-bold">$25.000</p>
+                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-none d-md-block">
+                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
+                            <div class="text-center p-3">
+                                <img src="{{ asset('img/producto6.png') }}" class="img-fluid" alt="Protector Bucal" style="max-height: 200px; width: auto;">
                             </div>
                             <div class="card-body text-center">
                                 <h5 class="card-title text-dark fw-bold">Protector Bucal SMAI</h5>
                                 <p class="text-danger fw-bold">$12.000</p>
-                                <a href="#" class="btn btn-dark btn-sm">Ver más</a>
+                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
                             </div>
                         </div>
                     </div>
@@ -150,9 +148,11 @@
 
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductos" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselProductos" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
     </button>
 </div>
 
@@ -206,6 +206,7 @@
 </div>
 
 <div class="d-flex justify-content-center mt-5">
+<a href="{{ url('/construccion') }}" class="d-inline-block" style="text-decoration: none;">
 <button class="animated-button">
   <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
     <path
@@ -220,6 +221,7 @@
     ></path>
   </svg>
 </button>
+</a>
 </div>
 
 <div class="text-center mt-5 mb-4">

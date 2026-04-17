@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("plantilla")
 @section('title', 'Comercialización')
 @section('content')
 
@@ -39,20 +39,20 @@
         <div class="p-4 rounded-4 shadow-sm" style="background-color: #f8f9fa; border-top: 5px solid #ed1c24;">
             <h3 class="fw-bold text-uppercase" style="color: #ed1c24; font-size: 1.8rem;">Formas de Pago</h3>
             <p class="mt-3 mb-0">Aceptamos todas las tarjetas de crédito, débito y transferencias bancarias para asegurar tu comodidad en cada compra.</p>
-        
+
             </p>
 
             <div class="py-3 px-2 rounded-3" style="background-color: #ed1c24;">
-                <img src="{{ asset('img/pagos-envios.png') }}" 
-                     alt="Medios de pago y envío" 
-                     class="img-fluid" 
+                <img src="{{ asset('img/pagos-envios.png') }}"
+                     alt="Medios de pago y envío"
+                     class="img-fluid"
                      style="max-height: 50px; filter: brightness(1.1);">
             </div>
-            
+
             <p class="mt-3 small text-muted italic">
                 Operamos con las plataformas de pago más seguras del país.
             </p>
-        
+
         </div>
     </div>
 </div>

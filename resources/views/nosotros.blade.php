@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("plantilla")
 @section('title', 'Nosotros')
 @section('content');
 
@@ -124,6 +124,7 @@
     ></path>
   </svg>
 </button>
+</a>
 </div>
 
 @endsection

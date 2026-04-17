@@ -1,20 +1,20 @@
-/* Este es el fondo de la barra */
+
 .nav-de-tatamihub {
     background-color: #000000 !important; /* Negro */
     border-bottom: 2px solid #ed1c24;    /* Una línea roja abajo */
 }
 
-/* Este es el color de las letras (Home, Productos, etc.) */
+
 .nav-de-tatamihub .nav-link {
     color: white !important;
 }
 
-/* Este es el color de las letras cuando pasás el mouse */
+
 .nav-de-tatamihub .nav-link:hover {
-    color: #ed1c24 !important; /* Rojo al pasar el mouse */
+    color: #ed1c24 !important;
 }
 
-/* Este es el color del nombre "TatamiHub" a la izquierda */
+
 .nav-de-tatamihub .navbar-brand {
     color: white !important;
     font-weight: bold;
@@ -116,14 +116,14 @@
     object-position: center; /* Centra la imagen para que no se pierda el protagonista */
 }
 
-/* Opcional: Borde rojo superior e inferior para que pegue con la marca */
+
 #carouselExampleInterval {
     border-top: 3px solid #ed1c24;
     border-bottom: 3px solid #ed1c24;
 }
 
 .info-banner {
-    background-color: #808080; /* El gris de tu captura */
+    background-color: #808080;
     padding: 40px 0;
     color: white;
 }

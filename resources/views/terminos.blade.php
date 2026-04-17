@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("plantilla")
 @section('title', 'Términos y Usos')
 @section('content')
 
@@ -21,7 +21,7 @@
     </div>
 
     <div class="row justify-content-center g-4 text-start">
-        
+
         <div class="col-md-5">
             <div class="p-4 h-100 shadow-sm rounded-3 bg-white border" style="border-left: 5px solid #ed1c24 !important;">
                 <h3 class="fw-bold text-uppercase mb-3" style="color: #ed1c24; font-size: 1.3rem;">Políticas de Privacidad</h3>

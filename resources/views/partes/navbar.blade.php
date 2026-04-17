@@ -16,7 +16,7 @@
                     <a class="nav-link" href="{{ url('/nosotros') }}">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/construccion') }}">Contacto</a>
+                    <a class="nav-link" href="{{ url('/contacto') }}">Contacto</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/terminos') }}">Términos y Usos</a>

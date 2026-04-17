@@ -21,3 +21,13 @@ Route::get('/terminos', function () {
 Route::get('/construccion', function () {
     return view('construccion');
 });
+
+Route::get('/contacto', function () {
+    return view('contacto');
+});
+
+Route::post('/contacto', [ContactoController::class, 'procesar']);
+
+Route::get('/exito', function () {
+    return view('exito');
+});

@@ -109,7 +109,7 @@
         </div>
 
         <div class="d-flex justify-content-center mt-0">
-            <a href="{{ url('/construccion') }}" style="text-decoration: none;">
+            <a href="{{ url('/contacto') }}" style="text-decoration: none;">
 <button class="animated-button">
   <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
     <path

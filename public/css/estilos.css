@@ -150,24 +150,24 @@
 
 /* Efecto opcional: Que el icono cambie a rojo al pasar el mouse */
 .info-banner div:hover .info-icon {
-    color: #ed1c24;
+    color: #eb0000;
     transition: 0.3s;
 }
 
 .card-title {
-    color: #db0075;
+    color: #eb0000;
 }
 .card-text {
-    color: #17E6E6;
+    color: #eb0000;
 }
 .list-inline-item {
-    color: #ffd700
+    color: #eb0000
 }
 .price {
-    color: #d92644;
+    color: #eb0000;
 }
 .btn-pink {
-    background-color: #fcb2b2 !important;
+    background-color: #eb0000 !important;
 }
 
 .card-img-top {
@@ -195,4 +195,69 @@
 .carnet-hover:hover{
     transform: translateY(-15px);
     filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.3));
+}
+
+.contact-form {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.contact-form label {
+  color: black;
+}
+
+.contact-form .heading {
+  font-size: 24px;
+  color: black;
+  ;
+  margin-bottom: 12px;
+  font-weight: bold;
+  display: block;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  margin-bottom: 10px;
+}
+
+/* Modificamos el bloque del textarea */
+textarea {
+  resize: none; /* Evita que el usuario lo deforme manualmente */
+  height: 150px; /* Aumentamos la altura (antes era 80px) */
+  width: 100%;   /* Hacemos que ocupe todo el ancho disponible del formulario */
+  min-width: 300px; /* Un mínimo para que no se vea minúsculo */
+}
+
+.contact-form input, .contact-form textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 5px #eb0000;
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+.contact-form button[type="submit"] {
+  background-color: #eb0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.contact-form button[type="submit"]:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
 }

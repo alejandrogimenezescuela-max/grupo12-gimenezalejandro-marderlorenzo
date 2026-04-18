@@ -31,3 +31,7 @@ Route::post('/contacto', [ContactoController::class, 'procesar']);
 Route::get('/exito', function () {
     return view('exito');
 });
+
+Route::get('/perfil', function () {
+    return view('perfil');
+});

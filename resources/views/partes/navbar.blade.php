@@ -25,7 +25,7 @@
 
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/construccion') }}" title="Perfil">
+                    <a class="nav-link" href="{{ url('/perfil') }}" title="Perfil">
                         <i class="bi bi-person" style="font-size: 1.2rem;"></i>
                     </a>
                 </li>

@@ -1,27 +1,27 @@
 @extends("plantilla")
-@section('title', 'Indumentaria')
+@section('title', 'Suplementos')
 @section('content')
 
 @php
-    // Array de productos de ejemplo para la categoría "Indumentaria" simula una base de datos
+    // Array de productos de ejemplo para la categoría "Suplementos" simula una base de datos
     $productos = [
         [
-            'nombre' => 'Cabezal Boxeo TatamiHUB',
-            'precio' => 100000,
-            'imagen' => 'producto4.jpg',
-            'talles' => ['M', 'L', 'XL']
+            'nombre' => 'Creatina 1kg StarNutrition',
+            'precio' => 70000,
+            'imagen' => 'producto7.jpg',
+            'talles' => ['Neutro', 'Frutos Rojos']
         ],
         [
-            'nombre' => 'Guantes Boxeo TatamiHUB',
+            'nombre' => 'Whey Protein 2lb StarNutrition',
             'precio' => 45000,
-            'imagen' => 'producto5.jpg',
-            'talles' => ['6oz', '8oz']
+            'imagen' => 'producto8.jpg',
+            'talles' => ['Chocolate', 'Vainilla', 'Cookies', 'Frutilla']
         ],
         [
-            'nombre' => 'Protector Bucal TatamiHUB',
-            'precio' => 35000,
-            'imagen' => 'producto6.jpg',
-            'talles' => ['Azul', 'Rojo']
+            'nombre' => 'Omega 3 Fish Oil StarNutrition',
+            'precio' => 33000,
+            'imagen' => 'producto9.jpg',
+            'talles' => ['60 cápsulas']
         ],
     ];
 @endphp

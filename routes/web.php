@@ -47,3 +47,7 @@ Route::get('/ropa', function () {
 Route::get('/indumentaria', function () {
     return view('indumentaria');
 });
+
+Route::get('/suplementos', function () {
+    return view('suplementos');
+});

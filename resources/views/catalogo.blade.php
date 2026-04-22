@@ -25,7 +25,7 @@
         </div>
 
         <div class="col-md-4 category-card" style="opacity: 0; transform: translateY(30px);">
-            <a href="{{ url('/categorias/suplementos') }}" class="text-decoration-none">
+            <a href="/suplementos" class="text-decoration-none">
                 <div class="card bg-dark text-white border-danger shadow-lg">
                     <img src="{{ asset('img/suplementos.png') }}" class="card-img" alt="Suplementos">
                     <div class="card-img-overlay d-flex align-items-center justify-content-center bg-overlay">

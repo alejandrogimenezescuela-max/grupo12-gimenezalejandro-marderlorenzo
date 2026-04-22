@@ -35,3 +35,11 @@ Route::get('/exito', function () {
 Route::get('/perfil', function () {
     return view('perfil');
 });
+
+Route::get('/catalogo', function () {
+    return view('catalogo');
+});
+
+Route::get('/ropa', function () {
+    return view('ropa');
+});

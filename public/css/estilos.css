@@ -405,3 +405,107 @@ textarea {
   ;
 }
 
+.tatami-card {
+    background: #1a1a1a;
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid #333;
+    transition: transform 0.3s ease;
+    
+    /* ELIMINAMOS height: 100% y flex-direction: column */
+    /* Dejamos que la tarjeta crezca hacia abajo */
+    display: block; 
+}
+
+/* NUEVA REGLA para el contenedor de la imagen */
+.tatami-img-container {
+    width: 100%;
+    
+    /* CAMBIO CLAVE: Quitamos la altura fija (height: 200px) */
+    /* Dejamos que la imagen dicte la altura */
+    height: auto; 
+    
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    
+    /* Centramos la imagen horizontalmente si es más angosta */
+    display: flex;
+    justify-content: center;
+}
+
+/* NUEVA REGLA para la imagen misma */
+.tatami-img-container img {
+    /* Clave para verla entera: */
+    width: auto; /* Dejamos que el ancho sea automático */
+    max-width: 100%; /* Pero que no se pase del ancho de la tarjeta */
+    height: auto; /* Dejamos que la altura sea automática */
+    
+    /* CAMBIO CLAVE: Quitamos object-fit: cover */
+    display: block;
+}
+
+.tatami-title {
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.tatami-sizes {
+    margin-bottom: 20px;
+}
+
+.tatami-sizes small {
+    color: #888;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.size-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-size {
+    background: #2a2a2a;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    transition: 0.2s;
+}
+
+.btn-size:hover, .btn-size:focus {
+    background: #e63946;
+    border-color: #e63946;
+}
+
+.tatami-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.tatami-price {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.btn-tatami-cart {
+    background: linear-gradient(45deg, #e63946, #9b2226);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-tatami-cart:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+}

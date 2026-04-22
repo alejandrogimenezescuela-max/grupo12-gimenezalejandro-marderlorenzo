@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/construccion') }}">Catálogo</a>
+                    <a class="nav-link" href="{{ url('/catalogo') }}">Catálogo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/comercializacion') }}">Comercialización</a>

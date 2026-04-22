@@ -43,3 +43,7 @@ Route::get('/catalogo', function () {
 Route::get('/ropa', function () {
     return view('ropa');
 });
+
+Route::get('/indumentaria', function () {
+    return view('indumentaria');
+});

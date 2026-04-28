@@ -5,7 +5,7 @@
 <div class="container mt-5 mb-5">
     <div class="row"> <div class="col-md-6">
             <div class="d-flex align-items-center mb-4">
-                <img src="{{ asset('img/logoDragon.png') }}" alt="Logo" class="me-3" style="height: 60px; width: auto;">
+                <img src="{{ asset('img/miscalenea/logoDragon.png') }}" alt="Logo" class="me-3" style="height: 60px; width: auto;">
                 <div class="text-start">
                     <h1 style="color: #ed1c24; font-weight: bold; text-transform: uppercase; margin-bottom: 5px;">
                         Contactanos:

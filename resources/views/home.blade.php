@@ -17,8 +17,11 @@
 
 
    <div style="text-align: center; padding: 20px;">
-        <img src="{{ asset('img/home/tatamiPortada.jpg') }}" alt="Logo TatamiHub" style="width: 600px; height: auto;">
-    </div>
+    <img src="{{ asset('img/home/tatamiPortada.jpg') }}"
+         alt="Logo TatamiHub"
+         style="max-width: 600px; width: 100%; height: auto;">
+</div>
+
 <div id="carouselExampleInterval" class="carousel slide shadow" data-bs-ride="carousel">
   <div class="carousel-inner">
 
@@ -129,9 +132,11 @@
 </div>
 
 
-<div style="text-align: center; padding: 20px; margin-bottom: 50px;">
-        <img src="{{ asset('img/home/marcas.png') }}" alt="Marcas" style="width: 800px; height: auto; opacity: 0.9;">
-    </div>
+<div style="text-align: center; padding: 20px; width: 100%; margin-bottom: 50px;">
+    <img src="{{ asset('img/home/marcas.png') }}"
+         alt="Marcas"
+         style="max-width: 800px; width: 100%; height: auto; opacity: 0.9;">
+</div>
 
 <div class="info-banner mt-5">
     <div class="container">

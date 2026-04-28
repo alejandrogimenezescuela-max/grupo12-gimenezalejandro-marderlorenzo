@@ -29,8 +29,8 @@
             <div class="col-md-auto text-md-end text-start">
                 <p class="text-white small fw-bold mb-2">Seguinos</p>
                 <div class="d-flex justify-content-md-end gap-3">
-                    <a href="#" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-white fs-4"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.facebook.com" target="_blank" class="text-white fs-4"><i class="bi bi-facebook"></i></a>
                 </div>
             </div>
 
@@ -42,4 +42,4 @@
             </div>
         </div>
     </div>
-</footer>   
+</footer>

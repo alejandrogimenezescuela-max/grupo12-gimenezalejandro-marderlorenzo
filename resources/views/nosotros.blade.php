@@ -7,7 +7,7 @@
     <div class="row align-items-center">
 
         <div class="col-md-5 mb-4 mb-md-0 text-center text-md-start">
-            <img src="{{ asset('img/chimpance-peleando.png') }}"
+            <img src="{{ asset('img/nosotros/chimpance-peleando.png') }}"
                  alt="Guerrero TatamiHub"
                  class="img-fluid"
                  style="max-width: 450px;">
@@ -46,14 +46,14 @@
     <div class="row justify-content-center align-items-center gap-4">
 
         <div class="col-md-5 d-flex justify-content-center">
-            <img src="{{ asset('img/carnet1.png') }}"
+            <img src="{{ asset('img/nosotros/carnet1.png') }}"
                  alt="Carnet Lorenzo"
                  class="img-fluid carnet-hover"
                  style="max-width: 450px; height: auto; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));">
         </div>
 
         <div class="col-md-5 d-flex justify-content-center">
-            <img src="{{ asset('img/carnet2.png') }}"
+            <img src="{{ asset('img/nosotros/carnet2.png') }}"
                  alt="Carnet Alejandro"
                  class="img-fluid carnet-hover"
                  style="max-width: 450px; height: auto; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));">

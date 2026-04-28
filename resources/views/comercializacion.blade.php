@@ -43,7 +43,7 @@
             </p>
 
             <div class="py-3 px-2 rounded-3" style="background-color: #ed1c24;">
-                <img src="{{ asset('img/pagos-envios.png') }}"
+                <img src="{{ asset('img/comercializacion/pagos-envios.png') }}"
                      alt="Medios de pago y envío"
                      class="img-fluid"
                      style="max-height: 50px; filter: brightness(1.1);">

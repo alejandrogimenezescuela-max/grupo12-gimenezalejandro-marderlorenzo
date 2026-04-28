@@ -23,6 +23,27 @@
             'imagen' => 'producto6.jpg',
             'talles' => ['Azul', 'Rojo']
         ],
+
+        [
+            'nombre' => 'Tibial Bronx',
+            'precio' => 75000,
+            'imagen' => 'producto10.jpg',
+            'talles' => ['Azul', 'Rojo']
+        ],
+
+         [
+            'nombre' => 'Tibial  TatamiHUB Unlimited',
+            'precio' => 85000,
+            'imagen' => 'producto14.jpg',
+            'talles' => ['Rojo']
+        ],
+
+         [
+            'nombre' => 'Guante MMA TatamiHUB Unlimited',
+            'precio' => 55000,
+            'imagen' => 'producto15.jpg',
+            'talles' => ['S', 'M', 'L']
+        ],
     ];
 @endphp
 
@@ -34,10 +55,10 @@
                     <div class="tatami-img-container">
                         <img src="{{ asset('img/productos/' . $p['imagen']) }}" alt="{{ $p['nombre'] }}">
                     </div>
-                    
+
                     <div class="tatami-body">
                         <h5 class="tatami-title">{{ $p['nombre'] }}</h5>
-                        
+
                         <div class="tatami-sizes">
                             <small>Talles:</small>
                             <div class="size-buttons">

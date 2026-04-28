@@ -23,6 +23,27 @@
             'imagen' => 'producto3.jpg',
             'talles' => ['M', 'L']
         ],
+
+         [
+            'nombre' => 'Short Grappling',
+            'precio' => 45000,
+            'imagen' => 'producto12.jpg',
+            'talles' => ['M', 'L']
+        ],
+
+        [
+            'nombre' => 'Faixa Jiu-Jitsu',
+            'precio' => 25000,
+            'imagen' => 'producto11.jpg',
+            'talles' => ['A2', 'A3']
+        ],
+
+         [
+            'nombre' => 'Remera Lycra termica Unlimited',
+            'precio' => 35000,
+            'imagen' => 'producto13.jpg',
+            'talles' => ['S', 'M']
+        ],
     ];
 @endphp
 
@@ -34,10 +55,10 @@
                     <div class="tatami-img-container">
                         <img src="{{ asset('img/productos/' . $p['imagen']) }}" alt="{{ $p['nombre'] }}">
                     </div>
-                    
+
                     <div class="tatami-body">
                         <h5 class="tatami-title">{{ $p['nombre'] }}</h5>
-                        
+
                         <div class="tatami-sizes">
                             <small>Talles:</small>
                             <div class="size-buttons">

@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="loader">
-    <img src="{{ asset('img/preloader.png') }}" alt="Cargando..." class="pulsate">
+    <img src="{{ asset('img/miscalenea/preloader.png') }}" alt="Cargando..." class="pulsate">
 </div>
     <header>
         @include('partes.navbar')

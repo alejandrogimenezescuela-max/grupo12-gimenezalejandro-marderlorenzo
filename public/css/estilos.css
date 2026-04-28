@@ -374,7 +374,7 @@ textarea {
 }
 
 .button-submit:hover {
-  background-color: #v;
+  background-color: #333;
 }
 
 .p {
@@ -411,24 +411,24 @@ textarea {
     padding: 15px;
     border: 1px solid #333;
     transition: transform 0.3s ease;
-    
+
     /* ELIMINAMOS height: 100% y flex-direction: column */
     /* Dejamos que la tarjeta crezca hacia abajo */
-    display: block; 
+    display: block;
 }
 
 /* NUEVA REGLA para el contenedor de la imagen */
 .tatami-img-container {
     width: 100%;
-    
+
     /* CAMBIO CLAVE: Quitamos la altura fija (height: 200px) */
     /* Dejamos que la imagen dicte la altura */
-    height: auto; 
-    
+    height: auto;
+
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 15px;
-    
+
     /* Centramos la imagen horizontalmente si es más angosta */
     display: flex;
     justify-content: center;
@@ -440,7 +440,7 @@ textarea {
     width: auto; /* Dejamos que el ancho sea automático */
     max-width: 100%; /* Pero que no se pase del ancho de la tarjeta */
     height: auto; /* Dejamos que la altura sea automática */
-    
+
     /* CAMBIO CLAVE: Quitamos object-fit: cover */
     display: block;
 }
@@ -509,3 +509,250 @@ textarea {
     filter: brightness(1.2);
     box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
 }
+
+/* Tarjeta de Producto BJJ */
+.bjj-product-card {
+    background-color: #121212; /* Fondo de tatami oscuro */
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.bjj-product-card:hover {
+    border-color: #e63946; /* El rojo característico */
+    transform: translateY(-8px);
+}
+
+/* Área de Exhibición de Imagen */
+.bjj-product-display {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    background: radial-gradient(circle, #222 0%, #121212 100%);
+    border-radius: 8px;
+}
+
+.bjj-product-display img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+/* Títulos e Información */
+.bjj-product-name {
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* Selector de Talles (bjj-size-tag) */
+.bjj-size-selector small {
+    color: #777;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.bjj-size-options {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.bjj-size-tag {
+    background: #1f1f1f;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bjj-size-tag:hover {
+    background-color: #e63946;
+    border-color: #e63946;
+}
+
+/* Fila de Compra (Precio y Botón) */
+.bjj-purchase-row {
+    margin-top: auto; /* Empuja el contenido al fondo de la card */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #222;
+}
+
+.bjj-price-tag {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.3rem;
+}
+
+.bjj-add-to-cart {
+    background: linear-gradient(135deg, #e63946 0%, #a81d24 100%);
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.bjj-add-to-cart:hover {
+    filter: brightness(1.15);
+    box-shadow: 0 0 15px rgba(230, 57, 70, 0.4);
+}
+
+/* Ajustamos el contenedor de los controles */
+.carousel-control-prev,
+.carousel-control-next {
+    /* En lugar de ocupar el 100%, le damos una altura fija
+       basada en la zona de las imágenes */
+    height: 300px;
+    top: 50px; /* Ajustá este valor para bajarlas hasta que queden sobre la foto */
+    align-items: center;
+}
+
+/* Para que se vean mejor sobre el fondo oscuro */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(255, 0, 0, 0.2); /* Un toque rojo sutil */
+    border-radius: 50%;
+}
+
+ /* Contenedor principal para centrar todo en la pantalla */
+    .login-wrapper {
+        min-height: 85vh; /* Ocupa casi toda la altura de la pantalla */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    /* Estilos de tu Formulario (Más grande y con sombra) */
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background-color: #ffffff;
+        padding: 45px; /* Más espacio interno */
+        width: 100%;
+        max-width: 500px; /* Ancho imponente */
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .flex-column > label {
+        color: #000000;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .inputForm {
+        border: 1.5px solid #ecedec;
+        border-radius: 10px;
+        height: 55px; /* Inputs más altos */
+        display: flex;
+        align-items: center;
+        padding-left: 15px;
+        transition: 0.2s ease-in-out;
+    }
+
+    .input {
+        margin-left: 10px;
+        border: none;
+        width: 85%;
+        height: 100%;
+        outline: none;
+    }
+
+    .inputForm:focus-within {
+        border: 1.5px solid #ed1c24; /* Rojo TatamiHUB al hacer foco */
+    }
+
+    .flex-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        justify-content: space-between;
+    }
+
+    .span {
+        font-size: 14px;
+        color: #ed1c24;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .button-submit {
+        margin: 20px 0 10px 0;
+        background-color: #ed1c24; /* Botón Rojo de la marca */
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 10px;
+        height: 55px;
+        width: 100%;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .button-submit:hover {
+        background-color: #c4131a;
+    }
+
+    .p {
+        text-align: center;
+        color: black;
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    .btn {
+        margin-top: 10px;
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 500;
+        gap: 10px;
+        border: 1px solid #ededef;
+        background-color: white;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+        border: 1px solid #ed1c24;
+    }
+
+    /* Estilo para el texto de bienvenida */
+    .welcome-text h1 {
+        font-size: 4rem;
+        font-weight: 900;
+        color: #000000;
+        margin-bottom: 10px;
+    }

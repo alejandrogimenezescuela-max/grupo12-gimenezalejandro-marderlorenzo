@@ -34,12 +34,12 @@
                     <div class="tatami-img-container">
                         <img src="{{ asset('img/productos/' . $p['imagen']) }}" alt="{{ $p['nombre'] }}">
                     </div>
-                    
+
                     <div class="tatami-body">
                         <h5 class="tatami-title">{{ $p['nombre'] }}</h5>
-                        
+
                         <div class="tatami-sizes">
-                            <small>Talles:</small>
+                            <small>Tipos:</small>
                             <div class="size-buttons">
                                 @foreach($p['talles'] as $talle)
                                     <button class="btn-size">{{ $talle }}</button>

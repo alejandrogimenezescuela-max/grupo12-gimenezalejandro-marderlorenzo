@@ -3,22 +3,35 @@
 @section('title', 'Página de Inicio')
 
 @section('content')
+
+@php
+    $productos = [
+        ['nombre' => 'Tibial Bronx', 'precio' => 70500, 'imagen' => 'producto10.jpg', 'talles' => ['M', 'L', 'XL']],
+        ['nombre' => 'Faixa BJJ Shiai', 'precio' => 25000, 'imagen' => 'producto11.jpg', 'talles' => ['A1', 'A2', 'A3']],
+        ['nombre' => 'Protector Bucal SMAI', 'precio' => 12000, 'imagen' => 'producto6.jpg', 'talles' => ['Único']],
+        ['nombre' => 'Kimono Shiai Gold', 'precio' => 110000, 'imagen' => 'producto1.jpg', 'talles' => ['A1', 'A2']],
+        ['nombre' => 'Rashguard Tatami', 'precio' => 45000, 'imagen' => 'producto2.jpg', 'talles' => ['S', 'M', 'L']],
+        ['nombre' => 'Pantalón Grappling', 'precio' => 38000, 'imagen' => 'producto12.jpg', 'talles' => ['40', '42']]
+    ];
+@endphp
+
+
    <div style="text-align: center; padding: 20px;">
-        <img src="{{ asset('img/tatamiPortada.jpg') }}" alt="Logo TatamiHub" style="width: 600px; height: auto;">
+        <img src="{{ asset('img/home/tatamiPortada.jpg') }}" alt="Logo TatamiHub" style="width: 600px; height: auto;">
     </div>
 <div id="carouselExampleInterval" class="carousel slide shadow" data-bs-ride="carousel">
   <div class="carousel-inner">
 
     <div class="carousel-item active" data-bs-interval="10000">
-      <img src="{{ asset('img/carrusel1.jpg') }}" class="d-block w-100 banner-img" alt="Hecho por practicantes">
+      <img src="{{ asset('img/carrusel/carrusel1.jpg') }}" class="d-block w-100 banner-img" alt="Hecho por practicantes">
     </div>
 
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="{{ asset('img/carrusel2.jpg') }}" class="d-block w-100 banner-img" alt="Información de envíos">
+      <img src="{{ asset('img/carrusel/carrusel2.jpg') }}" class="d-block w-100 banner-img" alt="Información de envíos">
     </div>
 
     <div class="carousel-item">
-      <img src="{{ asset('img/carrusel3.jpg') }}" class="d-block w-100 banner-img" alt="Calidad TatamiHub">
+      <img src="{{ asset('img/carrusel/carrusel3.jpg') }}" class="d-block w-100 banner-img" alt="Calidad TatamiHub">
     </div>
 
   </div>
@@ -55,97 +68,48 @@
     <div style="background-color: #ed1c24; height: 3px; width: 80px; margin: 0 auto; border-radius: 2px;"></div>
 </div>
 
-<div id="carouselProductos" class="carousel carousel-dark slide my-5" data-bs-ride="carousel">
+<div id="carouselProductos" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
 
-        <div class="carousel-item active">
-            <div class="container">
-                <div class="row g-4 justify-content-center">
-                    <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
-                            <div class="text-center p-3">
-                                <img src="{{ asset('img/producto1.png') }}" class="img-fluid" alt="Kimono" style="max-height: 200px; width: auto;">
+        @foreach(array_chunk($productos, 3) as $chunk)
+            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                <div class="container">
+                    <div class="row g-4 justify-content-center">
+
+                        @foreach($chunk as $p)
+                            <div class="col-md-4">
+                                <div class="bjj-product-card">
+                                    <div class="bjj-product-display">
+                                        <img src="{{ asset('img/productos/' . $p['imagen']) }}" alt="{{ $p['nombre'] }}">
+                                    </div>
+
+                                    <div class="bjj-product-info">
+                                        <h5 class="bjj-product-name">{{ $p['nombre'] }}</h5>
+
+                                        <div class="bjj-size-selector">
+                                            <small>Talles Disponibles:</small>
+                                            <div class="bjj-size-options">
+                                                @foreach($p['talles'] as $talle)
+                                                    <button class="bjj-size-tag">{{ $talle }}</button>
+                                                @endforeach
+                                            </div>
+                                        </div>
+
+                                        <div class="bjj-purchase-row">
+                                            <span class="bjj-price-tag">${{ number_format($p['precio'], 0, ',', '.') }}</span>
+                                            <button class="bjj-add-to-cart">Añadir</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title text-dark fw-bold">Kimono Shiai</h5>
-                                <p class="text-danger fw-bold">$133.100</p>
-                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 d-none d-md-block">
-                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
-                            <div class="text-center p-3">
-                                <img src="{{ asset('img/producto2.png') }}" class="img-fluid" alt="Guantes" style="max-height: 200px; width: auto;">
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title text-dark fw-bold">Guantes Bronx 14/16Oz</h5>
-                                <p class="text-danger fw-bold">$45.000</p>
-                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 d-none d-md-block">
-                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
-                            <div class="text-center p-3">
-                                <img src="{{ asset('img/producto3.png') }}" class="img-fluid" alt="Suplemento" style="max-height: 200px; width: auto;">
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title text-dark fw-bold">Creatine MONOHYDRATE</h5>
-                                <p class="text-danger fw-bold">$62.300</p>
-                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
 
-        <div class="carousel-item">
-            <div class="container">
-                <div class="row g-4 justify-content-center">
-                    <div class="col-md-4">
-                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
-                            <div class="text-center p-3">
-                                <img src="{{ asset('img/producto4.png') }}" class="img-fluid" alt="Tibial" style="max-height: 200px; width: auto;">
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title text-dark fw-bold">Tibial Bronx</h5>
-                                <p class="text-danger fw-bold">$70.500</p>
-                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 d-none d-md-block">
-                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
-                            <div class="text-center p-3">
-                                <img src="{{ asset('img/producto5.png') }}" class="img-fluid" alt="Faixa" style="max-height: 200px; width: auto;">
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title text-dark fw-bold">Faixa BJJ Shiai</h5>
-                                <p class="text-danger fw-bold">$25.000</p>
-                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 d-none d-md-block">
-                        <div class="card h-100 shadow-sm border-0 card-producto bg-transparent">
-                            <div class="text-center p-3">
-                                <img src="{{ asset('img/producto6.png') }}" class="img-fluid" alt="Protector Bucal" style="max-height: 200px; width: auto;">
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title text-dark fw-bold">Protector Bucal SMAI</h5>
-                                <p class="text-danger fw-bold">$12.000</p>
-                                <a href="{{ url('/construccion') }}" class="btn btn-dark btn-sm">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
+    </div> {{-- Botones AHORA SÍ adentro del div #carouselProductos --}}
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductos" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Anterior</span>
@@ -154,6 +118,7 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Siguiente</span>
     </button>
+
 </div>
 
     <div class="text-center mt-5 mb-4">
@@ -165,7 +130,7 @@
 
 
 <div style="text-align: center; padding: 20px; margin-bottom: 50px;">
-        <img src="{{ asset('img/marcas.png') }}" alt="Marcas" style="width: 800px; height: auto; opacity: 0.9;">
+        <img src="{{ asset('img/home/marcas.png') }}" alt="Marcas" style="width: 800px; height: auto; opacity: 0.9;">
     </div>
 
 <div class="info-banner mt-5">

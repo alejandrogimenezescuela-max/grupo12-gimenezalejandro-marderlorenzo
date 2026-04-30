@@ -4,17 +4,6 @@
 
 @section('content')
 
-@php
-    $productos = [
-        ['nombre' => 'Tibial Bronx', 'precio' => 70500, 'imagen' => 'producto10.jpg', 'talles' => ['M', 'L', 'XL']],
-        ['nombre' => 'Faixa BJJ Shiai', 'precio' => 25000, 'imagen' => 'producto11.jpg', 'talles' => ['A1', 'A2', 'A3']],
-        ['nombre' => 'Protector Bucal SMAI', 'precio' => 12000, 'imagen' => 'producto6.jpg', 'talles' => ['Único']],
-        ['nombre' => 'Kimono Shiai Gold', 'precio' => 110000, 'imagen' => 'producto1.jpg', 'talles' => ['A1', 'A2']],
-        ['nombre' => 'Rashguard Tatami', 'precio' => 45000, 'imagen' => 'producto2.jpg', 'talles' => ['S', 'M', 'L']],
-        ['nombre' => 'Pantalón Grappling', 'precio' => 38000, 'imagen' => 'producto12.jpg', 'talles' => ['40', '42']]
-    ];
-@endphp
-
 
    <div style="text-align: center; padding: 20px;">
     <img src="{{ asset('img/home/tatamiPortada.jpg') }}"

@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+// ELIMINAMOS EL NAMESPACE DE AQUÍ
 
-Route::get('/', function () {
-    return view('home');
-});
+use App\Http\Controllers\ProductoController;
+use Illuminate\Support\Facades\Route;
+Route::get('/', [ProductoController::class, 'mostrarEnHome']);
 
 Route::get('/nosotros', function () {
     return view('nosotros');
@@ -34,18 +34,11 @@ Route::get('/perfil', function () {
     return view('perfil');
 });
 
-Route::get('/catalogo', function () {
-    return view('catalogo');
-});
+// Ahora que quitamos el namespace del archivo, esta línea funcionará perfecto
+Route::get('/catalogo', [ProductoController::class, 'index']);
 
-Route::get('/ropa', function () {
-    return view('ropa');
-});
+Route::get('/ropa', [ProductoController::class, 'mostrarEnRopa']);
 
-Route::get('/indumentaria', function () {
-    return view('indumentaria');
-});
+Route::get('/suplementos', [ProductoController::class, 'mostrarEnSuplementos']);
 
-Route::get('/suplementos', function () {
-    return view('suplementos');
-});
+Route::get('/indumentaria', [ProductoController::class, 'mostrarEnIndumentaria']);

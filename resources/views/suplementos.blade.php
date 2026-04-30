@@ -2,33 +2,9 @@
 @section('title', 'Suplementos')
 @section('content')
 
-@php
-    // Array de productos de ejemplo para la categoría "Suplementos" simula una base de datos
-    $productos = [
-        [
-            'nombre' => 'Creatina 1kg StarNutrition',
-            'precio' => 70000,
-            'imagen' => 'producto7.jpg',
-            'talles' => ['Neutro', 'Frutos Rojos']
-        ],
-        [
-            'nombre' => 'Whey Protein 2lb StarNutrition',
-            'precio' => 45000,
-            'imagen' => 'producto8.jpg',
-            'talles' => ['Chocolate', 'Vainilla', 'Cookies', 'Frutilla']
-        ],
-        [
-            'nombre' => 'Omega 3 Fish Oil StarNutrition',
-            'precio' => 33000,
-            'imagen' => 'producto9.jpg',
-            'talles' => ['60 cápsulas']
-        ],
-    ];
-@endphp
-
 <div class="container mt-5">
     <div class="row g-4">
-        @foreach($productos as $p)
+        @foreach($suplementos as $p)
             <div class="col-md-4">
                 <div class="tatami-card">
                     <div class="tatami-img-container">

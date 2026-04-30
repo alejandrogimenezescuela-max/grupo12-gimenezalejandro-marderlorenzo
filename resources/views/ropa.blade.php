@@ -2,54 +2,9 @@
 @section('title', 'Ropa')
 @section('content')
 
-@php
-    // Array de productos de ejemplo para la categoría "Ropa" simula una base de datos
-    $productos = [
-        [
-            'nombre' => 'Kimono Negro Pro',
-            'precio' => 300000,
-            'imagen' => 'producto1.jpg',
-            'talles' => ['A1', 'A2', 'A3']
-        ],
-        [
-            'nombre' => 'Rashguard TatamiHUB',
-            'precio' => 100000,
-            'imagen' => 'producto2.jpg',
-            'talles' => ['S', 'M', 'L', 'XL']
-        ],
-        [
-            'nombre' => 'Short Muay Thai',
-            'precio' => 35000,
-            'imagen' => 'producto3.jpg',
-            'talles' => ['M', 'L']
-        ],
-
-         [
-            'nombre' => 'Short Grappling',
-            'precio' => 45000,
-            'imagen' => 'producto12.jpg',
-            'talles' => ['M', 'L']
-        ],
-
-        [
-            'nombre' => 'Faixa Jiu-Jitsu',
-            'precio' => 25000,
-            'imagen' => 'producto11.jpg',
-            'talles' => ['A2', 'A3']
-        ],
-
-         [
-            'nombre' => 'Remera Lycra termica Unlimited',
-            'precio' => 35000,
-            'imagen' => 'producto13.jpg',
-            'talles' => ['S', 'M']
-        ],
-    ];
-@endphp
-
 <div class="container mt-5">
     <div class="row g-4">
-        @foreach($productos as $p)
+        @foreach($ropa as $p)
             <div class="col-md-4">
                 <div class="tatami-card">
                     <div class="tatami-img-container">

@@ -1,11 +1,18 @@
 <?php
 
-// ELIMINAMOS EL NAMESPACE DE AQUÍ
+use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
-Route::get('/', [ProductoController::class, 'mostrarEnHome']);
 
+
+// Rutas para el Registro (Corregidas con ::class)
+Route::get('/register', [AuthController::class, 'formularioRegistro']);
+Route::post('/register', [AuthController::class, 'registrar']);
+
+// Rutas para el Login (Corregidas con ::class)
+Route::get('/login', [AuthController::class, 'formularioLogin']);
+Route::post('/login', [AuthController::class, 'autenticar']);
 Route::get('/nosotros', function () {
     return view('nosotros');
 });
@@ -13,6 +20,8 @@ Route::get('/nosotros', function () {
 Route::get('/comercializacion', function () {
     return view('comercializacion');
 });
+
+Route::get('/', [ProductoController::class, 'mostrarEnHome']);
 
 Route::get('/terminos', function () {
     return view('terminos');
@@ -30,8 +39,15 @@ Route::get('/exito', function () {
     return view('exito');
 });
 
-Route::get('/perfil', function () {
-    return view('perfil');
+// Rutas exclusivas para usuarios que NO iniciaron sesión (Invitados)
+Route::middleware(['guest'])->group(function () {
+    
+    // Ahora le pedimos al controlador que decida qué mostrar
+    Route::get('/login', [AuthController::class, 'formularioLogin'])->name('login');
+
+    Route::get('/register', function () {
+        return view('backend.usuarios.registro'); 
+    })->name('register');
 });
 
 // Ahora que quitamos el namespace del archivo, esta línea funcionará perfecto

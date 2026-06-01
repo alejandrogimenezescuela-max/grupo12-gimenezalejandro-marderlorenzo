@@ -9,18 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('productos', function (Blueprint $table) {
-            $table->id(); // PK autoincremental
-            $table->string('nombre');
-            $table->text('descripcion')->nullable();
-            $table->decimal('precio', 8, 2); // Hasta 999999.99
-            $table->unsignedInteger('stock')->default(0);
-            $table->timestamps(); // created_at y updated_at
-            $table->softDeletes(); // deleted_at para borrado lógico
-        });
-    }
+public function up()
+{
+    Schema::create('productos', function (Blueprint $table) {
+        $table->id();
+        // Enlace con categorías: Si se borra una categoría, ojo, acá usamos 'restrict' para que no te borre los productos por error
+        $table->foreignId('categoria_id')->constrained('categorias')->onDelete('restrict');
+        $table->string('nombre');
+        $table->text('descripcion')->nullable();
+        $table->decimal('precio', 10, 2);
+        $table->integer('stock_minimo')->default(5);
+        $table->string('imagen')->nullable();
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.

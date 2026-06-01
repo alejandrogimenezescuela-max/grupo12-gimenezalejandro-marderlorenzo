@@ -21,7 +21,7 @@ Route::get('/comercializacion', function () {
     return view('comercializacion');
 });
 
-Route::get('/', [ProductoController::class, 'mostrarEnHome']);
+Route::get('/', [ProductoController::class, 'indexHome']);
 
 Route::get('/terminos', function () {
     return view('terminos');
@@ -41,16 +41,16 @@ Route::get('/exito', function () {
 
 // Rutas exclusivas para usuarios que NO iniciaron sesión (Invitados)
 Route::middleware(['guest'])->group(function () {
-    
+
     // Ahora le pedimos al controlador que decida qué mostrar
     Route::get('/login', [AuthController::class, 'formularioLogin'])->name('login');
 
     Route::get('/register', function () {
-        return view('backend.usuarios.registro'); 
+        return view('backend.usuarios.registro');
     })->name('register');
 });
 
-// Ahora que quitamos el namespace del archivo, esta línea funcionará perfecto
+
 Route::get('/catalogo', [ProductoController::class, 'index']);
 
 Route::get('/ropa', [ProductoController::class, 'mostrarEnRopa']);
@@ -58,3 +58,11 @@ Route::get('/ropa', [ProductoController::class, 'mostrarEnRopa']);
 Route::get('/suplementos', [ProductoController::class, 'mostrarEnSuplementos']);
 
 Route::get('/indumentaria', [ProductoController::class, 'mostrarEnIndumentaria']);
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/cliente', [App\Http\Controllers\AuthController::class, 'panelCliente'])->middleware('auth');
+
+Route::post('/cliente/guardar-direccion', [App\Http\Controllers\AuthController::class, 'guardarDireccion'])->name('cliente.guardar_direccion')->middleware('auth');
+
+Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('auth');

@@ -8,8 +8,7 @@
             <a href="/ropa" class="text-decoration-none">
                 <div class="card bg-dark text-white border-danger shadow-lg">
                     <img src="{{ asset('img/catalogo/pilchas.png') }}" class="card-img" alt="Ropa">
-                    <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                    </div>
+                    <div class="card-img-overlay d-flex align-items-center justify-content-center"></div>
                 </div>
             </a>
         </div>
@@ -18,8 +17,7 @@
             <a href="/indumentaria" class="text-decoration-none">
                 <div class="card bg-dark text-white border-danger shadow-lg">
                     <img src="{{ asset('img/catalogo/indumentaria.png') }}" class="card-img" alt="Indumentaria">
-                    <div class="card-img-overlay d-flex align-items-center justify-content-center bg-overlay">
-                    </div>
+                    <div class="card-img-overlay d-flex align-items-center justify-content-center bg-overlay"></div>
                 </div>
             </a>
         </div>
@@ -28,8 +26,7 @@
             <a href="/suplementos" class="text-decoration-none">
                 <div class="card bg-dark text-white border-danger shadow-lg">
                     <img src="{{ asset('img/catalogo/suplementos.png') }}" class="card-img" alt="Suplementos">
-                    <div class="card-img-overlay d-flex align-items-center justify-content-center bg-overlay">
-                    </div>
+                    <div class="card-img-overlay d-flex align-items-center justify-content-center bg-overlay"></div>
                 </div>
             </a>
         </div>
@@ -46,7 +43,7 @@
 <div id="carouselProductos" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
 
-        @foreach(array_chunk($productos, 3) as $chunk)
+        @forelse($productos->chunk(3) as $chunk)
             <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                 <div class="container">
                     <div class="row g-4 justify-content-center">
@@ -55,23 +52,29 @@
                             <div class="col-md-4">
                                 <div class="bjj-product-card">
                                     <div class="bjj-product-display">
-                                        <img src="{{ asset('img/productos/' . $p['imagen']) }}" alt="{{ $p['nombre'] }}">
+                                        @if($p->imagen)
+                                            <img src="{{ asset('storage/' . $p->imagen) }}" alt="{{ $p->nombre }}">
+                                        @else
+                                            <img src="{{ asset('img/productos/placeholder.jpg') }}" alt="Sin imagen">
+                                        @endif
                                     </div>
 
                                     <div class="bjj-product-info">
-                                        <h5 class="bjj-product-name">{{ $p['nombre'] }}</h5>
+                                        <h5 class="bjj-product-name">{{ $p->nombre }}</h5>
 
                                         <div class="bjj-size-selector">
                                             <small>Talles Disponibles:</small>
                                             <div class="bjj-size-options">
-                                                @foreach($p['talles'] as $talle)
-                                                    <button class="bjj-size-tag">{{ $talle }}</button>
+                                                @foreach($p->variantes as $variante)
+                                                    @if($variante->stock > 0)
+                                                        <button class="bjj-size-tag">{{ $variante->talle }}</button>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                         </div>
 
                                         <div class="bjj-purchase-row">
-                                            <span class="bjj-price-tag">${{ number_format($p['precio'], 0, ',', '.') }}</span>
+                                            <span class="bjj-price-tag">${{ number_format($p->precio, 0, ',', '.') }}</span>
                                             <button class="bjj-add-to-cart">Añadir</button>
                                         </div>
                                     </div>
@@ -82,9 +85,14 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="text-center py-5">
+                <p class="text-muted">No hay productos destacados cargados en este momento.</p>
+            </div>
+        @endforelse
 
-    </div> {{-- Botones AHORA SÍ adentro del div #carouselProductos --}}
+    </div>
+
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductos" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Anterior</span>
@@ -93,20 +101,17 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Siguiente</span>
     </button>
-
 </div>
 
-
-        <script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
         const cards = document.querySelectorAll('.category-card');
-
         cards.forEach((card, index) => {
             setTimeout(() => {
                 card.style.transition = "all 0.8s ease-out";
                 card.style.opacity = "1";
                 card.style.transform = "translateY(0)";
-            }, 200 * index); // Las imágenes aparecen una tras otra
+            }, 200 * index);
         });
     });
 </script>

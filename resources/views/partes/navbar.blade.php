@@ -23,12 +23,37 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/login') }}" title="Perfil">
-                        <i class="bi bi-person" style="font-size: 1.2rem;"></i>
-                    </a>
-                </li>
+            <ul class="navbar-nav ms-auto align-items-center">
+                @auth
+                    @if(auth()->user()->rol_id == 1)
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold me-2" href="{{ url('/admin/dashboard') }}" style="color: #e31919 !important; transition: color 0.2s ease;">
+                                <i class="bi bi-speedometer2 me-1"></i> Panel Admin
+                            </a>
+                        </li>
+                    @endif
+
+                    <li class="nav-item">
+                        <span class="navbar-text me-3 text-white" style="cursor: default; user-select: none; display: inline-block; vertical-align: middle;">
+                            Hola, {{ explode(' ', auth()->user()->nombre)[0] }}
+                        </span>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/cliente') }}" title="Mi Perfil">
+                            <i class="bi bi-person" style="font-size: 1.2rem;"></i>
+                        </a>
+                    </li>
+                @endauth
+
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/login') }}" title="Iniciar Sesión">
+                            <i class="bi bi-person" style="font-size: 1.2rem;"></i>
+                        </a>
+                    </li>
+                @endguest
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/construccion') }}" title="Carrito">
                         <i class="bi bi-cart" style="font-size: 1.2rem;"></i>

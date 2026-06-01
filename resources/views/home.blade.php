@@ -63,7 +63,7 @@
 <div id="carouselProductos" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
 
-        @foreach(array_chunk($productos, 3) as $chunk)
+        @forelse($productos->chunk(3) as $chunk)
             <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                 <div class="container">
                     <div class="row g-4 justify-content-center">
@@ -72,23 +72,29 @@
                             <div class="col-md-4">
                                 <div class="bjj-product-card">
                                     <div class="bjj-product-display">
-                                        <img src="{{ asset('img/productos/' . $p['imagen']) }}" alt="{{ $p['nombre'] }}">
+                                        @if($p->imagen)
+                                            <img src="{{ asset('storage/' . $p->imagen) }}" alt="{{ $p->nombre }}">
+                                        @else
+                                            <img src="{{ asset('img/productos/placeholder.jpg') }}" alt="Sin imagen">
+                                        @endif
                                     </div>
 
                                     <div class="bjj-product-info">
-                                        <h5 class="bjj-product-name">{{ $p['nombre'] }}</h5>
+                                        <h5 class="bjj-product-name">{{ $p->nombre }}</h5>
 
                                         <div class="bjj-size-selector">
                                             <small>Talles Disponibles:</small>
                                             <div class="bjj-size-options">
-                                                @foreach($p['talles'] as $talle)
-                                                    <button class="bjj-size-tag">{{ $talle }}</button>
+                                                @foreach($p->variantes as $variante)
+                                                    @if($variante->stock > 0)
+                                                        <button class="bjj-size-tag">{{ $variante->talle }}</button>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                         </div>
 
                                         <div class="bjj-purchase-row">
-                                            <span class="bjj-price-tag">${{ number_format($p['precio'], 0, ',', '.') }}</span>
+                                            <span class="bjj-price-tag">${{ number_format($p->precio, 0, ',', '.') }}</span>
                                             <button class="bjj-add-to-cart">Añadir</button>
                                         </div>
                                     </div>
@@ -99,9 +105,14 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="text-center py-5">
+                <p class="text-muted">No hay productos destacados disponibles en este momento.</p>
+            </div>
+        @endforelse
 
-    </div> {{-- Botones AHORA SÍ adentro del div #carouselProductos --}}
+    </div>
+
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductos" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Anterior</span>
@@ -110,7 +121,6 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Siguiente</span>
     </button>
-
 </div>
 
     <div class="text-center mt-5 mb-4">
@@ -165,7 +175,7 @@
 </div>
 
 <div class="d-flex justify-content-center mt-5">
-<a href="{{ url('/perfil') }}" class="d-inline-block" style="text-decoration: none;">
+<a href="{{ url('/register') }}" class="d-inline-block" style="text-decoration: none;">
 <button class="animated-button">
   <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
     <path

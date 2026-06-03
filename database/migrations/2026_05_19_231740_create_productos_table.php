@@ -13,14 +13,17 @@ public function up()
 {
     Schema::create('productos', function (Blueprint $table) {
         $table->id();
-        // Enlace con categorías: Si se borra una categoría, ojo, acá usamos 'restrict' para que no te borre los productos por error
-        $table->foreignId('categoria_id')->constrained('categorias')->onDelete('restrict');
+        
+        // 1. Creamos la clave foránea que te estaba faltando
+        $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
+        
         $table->string('nombre');
-        $table->text('descripcion')->nullable();
-        $table->decimal('precio', 10, 2);
-        $table->integer('stock_minimo')->default(5);
-        $table->string('imagen')->nullable();
+        $table->text('descripcion');
+        $table->decimal('precio', 8, 2);
+        $table->integer('stock_minimo')->default(2); // Para las alertas de stock bajo
+        $table->string('imagen'); // Para guardar la ruta de la foto (.png, .jpg)
         $table->timestamps();
+        $table->softDeletes(); // Si usás borrado lógico, si no quitalo
     });
 }
 

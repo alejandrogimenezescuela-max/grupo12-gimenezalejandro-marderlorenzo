@@ -66,3 +66,9 @@ Route::get('/cliente', [App\Http\Controllers\AuthController::class, 'panelClient
 Route::post('/cliente/guardar-direccion', [App\Http\Controllers\AuthController::class, 'guardarDireccion'])->name('cliente.guardar_direccion')->middleware('auth');
 
 Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('auth');
+
+// 1. Ruta para entrar a ver el formulario en el navegador
+Route::get('/admin/cargar', [ProductoController::class, 'create'])->name('backend.admin.create')->middleware('auth');
+
+// 2. Ruta invisible a la que el formulario le manda los datos al apretar el botón
+Route::post('/admin/productos/guardar', [ProductoController::class, 'store'])->name('backend.admin.store')->middleware('auth');

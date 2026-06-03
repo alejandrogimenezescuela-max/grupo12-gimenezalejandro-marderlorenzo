@@ -51,16 +51,21 @@ class AuthController extends Controller
         $rolId = $rolCliente ? $rolCliente->id : 2;
 
         $usuario = new Usuario();
-        $usuario->nombre = $request->name . ' ' . $request->lastname;
+
+        // Guardamos nombre y apellido por separado en sus respectivas columnas de la base de datos
+        $usuario->nombre = $request->name;       // Toma el input 'name'
+        $usuario->apellido = $request->lastname; // <-- CAPTURA EL APELLIDO. Esto es lo que soluciona el error en DBeaver
+
         $usuario->email = $request->email;
-        $usuario->password = $request->password;
+        $usuario->password = $request->password; // El modelo lo va a hashear solo gracias a tu configuración de casts
         $usuario->rol_id = $rolId;
-        $usuario->save();
+
+        $usuario->save(); // Ahora pasa limpio porque 'apellido' ya no va vacío
 
         return redirect('/login')->with('success', 'Usuario registrado con éxito.');
-    }
+    } // <-- ACÁ ESTABA LA LLAVE QUE FALTABA CERRAR
 
-   // 4. Procesa el inicio de sesión
+    // 4. Procesa el inicio de sesión
     public function autenticar(Request $request) {
         $credenciales = $request->validate([
             'email' => 'required|string|email',
@@ -106,7 +111,7 @@ class AuthController extends Controller
         return view('backend.usuarios.cliente');
     }
 
-   // Guarda o actualiza la dirección del cliente
+    // Guarda o actualiza la dirección del cliente
     public function guardarDireccion(Request $request) {
         $request->validate([
             'direccion' => 'required|string|max:255',

@@ -72,7 +72,8 @@
 <div class="container mt-5 mb-4">
     <div class="d-flex justify-content-between align-items-start">
         <div>
-            <h1 class="fw-bold text-dark mb-1" style="font-size: 2.5rem;">Bienvenido, {{ auth()->user()->nombre }}</h1>
+            {{-- CAMBIO 1: Nombre y Apellido en el saludo de bienvenida --}}
+            <h1 class="fw-bold text-dark mb-1" style="font-size: 2.5rem;">Bienvenido, {{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</h1>
             <p class="text-muted fs-5">Este es tu panel de perfil donde puedes modificar tus datos y gestionar tu cuenta.</p>
         </div>
 
@@ -97,13 +98,15 @@
                         <div class="avatar-circle shadow-sm">
                             <i class="bi bi-person-fill"></i>
                         </div>
-                        <h4 class="fw-bold text-dark m-0">{{ auth()->user()->nombre }}</h4>
+                        {{-- CAMBIO 2: Nombre y Apellido sobre el badge de Cliente --}}
+                        <h4 class="fw-bold text-dark m-0">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</h4>
                         <span class="badge bg-secondary mt-2">Cliente Preferencial</span>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label text-muted fw-bold small">Nombre Completo:</label>
-                        <p class="fs-5 text-dark fw-semibold mb-0">{{ auth()->user()->nombre }}</p>
+                        {{-- CAMBIO 3: Nombre y Apellido en la etiqueta de Nombre Completo --}}
+                        <p class="fs-5 text-dark fw-semibold mb-0">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</p>
                     </div>
 
                     <div class="mb-3">
@@ -152,13 +155,13 @@
                 <form action="{{ route('cliente.guardar_direccion') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="nueva_direccion" class="form-label fw-bold text-muted">Dirección (Calle, Número, Localidad)</label>
+                        <label class="form-label fw-bold text-muted">Dirección (Calle, Número, Localidad)</label>
                         <input type="text" class="form-control form-control-lg" id="nueva_direccion" name="direccion"
                                value="{{ auth()->user()->direccion }}" placeholder="Ej: Av. Raúl Alfonsín 3525, Corrientes" style="border-radius: 8px;" required>
                     </div>
 
                     <div class="mb-4">
-                        <label for="telefono" class="form-label fw-bold text-muted">Teléfono de Contacto</label>
+                        <label class="form-label fw-bold text-muted">Teléfono de Contacto</label>
                         <input type="text" class="form-control form-control-lg" id="telefono" name="telefono"
                                value="{{ auth()->user()->telefono }}" placeholder="Ej: 3794123456" style="border-radius: 8px;" required>
                     </div>

@@ -5,12 +5,9 @@
 <div class="container my-5">
     <div class="row align-items-center">
         
-
-
         {{-- Columna Izquierda: Mensaje de Bienvenida --}}
         <div class="col-md-6 text-dark pe-md-5 mb-5 mb-md-0">
-
-        <img src="{{ asset('img/miscalenea/preloader.png') }}" alt="TatamiHUB" class="img-fluid mb-4" style="max-width: 320px; height: auto;">
+            <img src="{{ asset('img/miscalenea/preloader.png') }}" alt="TatamiHUB" class="img-fluid mb-4" style="max-width: 320px; height: auto;">
             <h1 class="display-4 fw-bold mb-3" style="color: #111;">¡Sumate a la comunidad!</h1>
             <p class="lead text-muted mb-4">
                 Entrená tu mente, potenciá tu cuerpo.<br>
@@ -24,6 +21,18 @@
                 
                 <h2 class="text-center fw-bold mb-4" style="letter-spacing: -1px; color: #111;">CREAR CUENTA</h2>
 
+                {{-- 🔥 CARTEL DE ERRORES: Esto te va a decir la posta si falla un campo --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger border-0 shadow-sm mb-4" style="border-radius: 10px; color: #721c24; background-color: #f8d7da;">
+                        <b style="display: block; margin-bottom: 5px;">Por favor, corregí los siguientes errores:</b>
+                        <ul class="mb-0 px-3">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 {{-- Dirección simple hacia el controlador que procese el registro --}}
                 <form method="POST" action="/register">
                     @csrf
@@ -35,7 +44,7 @@
                             <span class="input-group-text bg-white border-end-0" style="border-radius: 10px 0 0 10px;">
                                 <i class="bi bi-person text-muted"></i>
                             </span>
-                            <input type="text" name="name" class="form-control border-start-0" placeholder="Ingrese su Nombre" required style="border-radius: 0 10px 10px 0; padding: 10px;">
+                            <input type="text" name="name" class="form-control border-start-0" placeholder="Ingrese su Nombre" required value="{{ old('name') }}" style="border-radius: 0 10px 10px 0; padding: 10px;">
                         </div>
                     </div>
 
@@ -46,7 +55,7 @@
                             <span class="input-group-text bg-white border-end-0" style="border-radius: 10px 0 0 10px;">
                                 <i class="bi bi-person text-muted"></i>
                             </span>
-                            <input type="text" name="lastname" class="form-control border-start-0" placeholder="Ingrese su Apellido" required style="border-radius: 0 10px 10px 0; padding: 10px;">
+                            <input type="text" name="lastname" class="form-control border-start-0" placeholder="Ingrese su Apellido" required value="{{ old('lastname') }}" style="border-radius: 0 10px 10px 0; padding: 10px;">
                         </div>
                     </div>
 
@@ -57,7 +66,7 @@
                             <span class="input-group-text bg-white border-end-0" style="border-radius: 10px 0 0 10px;">
                                 <i class="bi bi-envelope text-muted"></i>
                             </span>
-                            <input type="email" name="email" class="form-control border-start-0" placeholder="Ingrese su Email" required style="border-radius: 0 10px 10px 0; padding: 10px;">
+                            <input type="email" name="email" class="form-control border-start-0" placeholder="Ingrese su Email" required value="{{ old('email') }}" style="border-radius: 0 10px 10px 0; padding: 10px;">
                         </div>
                     </div>
 

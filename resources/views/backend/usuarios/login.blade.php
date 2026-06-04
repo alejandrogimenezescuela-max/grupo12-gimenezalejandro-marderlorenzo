@@ -65,7 +65,7 @@
                             <input type="checkbox" name="remember">
                             <label style="font-size: 14px;">Recordarme</label>
                         </div>
-                        <span class="span">¿Olvidaste tu contraseña?</span>
+                        <a href="/olvidaste-contrasena" class="span" style="text-decoration: none;">¿Olvidaste tu contraseña?</a>
                     </div>
 
                     {{-- Podés cambiar "Sign In" por "Iniciar Sesión" si querés dejar todo en español --}}

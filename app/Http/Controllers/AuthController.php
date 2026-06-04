@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rol;
-use App\Models\Usuario;
+use App\Models\User; // <-- CAMBIAMOS ESTO: Usamos el modelo User que corregimos antes
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash; // Importamos el Hash por seguridad
+use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
     // 1. Muestra la vista de login (Controlando si ya está logueado)
     public function formularioLogin() {
         if (auth()->check()) {
-            /** @var \App\Models\Usuario $usuario */
+            /** @var \App\Models\User $usuario */
             $usuario = auth()->user();
 
             if ($usuario->rol_id == 1) {
@@ -26,7 +28,7 @@ class AuthController extends Controller
     // 2. Muestra la vista de registro (Controlando si ya está logueado)
     public function formularioRegistro() {
         if (auth()->check()) {
-            /** @var \App\Models\Usuario $usuario */
+            /** @var \App\Models\User $usuario */
             $usuario = auth()->user();
 
             if ($usuario->rol_id == 1) {
@@ -44,26 +46,38 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:usuarios,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => [
+                'required', 
+                'string', 
+                'confirmed', // <-- Esta regla exige que coincida con password_confirmation
+                \Illuminate\Validation\Rules\Password::min(8)->mixedCase()
+            ],
+        ], [
+            'name.required' => 'El campo nombre es obligatorio.',
+            'lastname.required' => 'El campo apellido es obligatorio.',
+            'email.required' => 'El campo email es obligatorio.',
+            'email.email' => 'Por favor, ingresá un correo electrónico válido.',
+            'email.unique' => 'Este correo electrónico ya está registrado en TatamiHUB.',
+            'password.required' => 'La contraseña es obligatoria.',
+            
+            // 🔥 CLAVE: Separamos los mensajes para que Laravel sepa cuál mostrar según el error
+            'password.confirmed' => 'Las contraseñas no coinciden. Por favor, verificalas.',
+            'password' => 'La contraseña debe tener al menos 8 caracteres y contener una letra mayúscula.',
         ]);
 
-        $rolCliente = Rol::where('nombre', 'Cliente')->first();
+        $rolCliente = Rol::where('nombre', 'cliente')->first();
         $rolId = $rolCliente ? $rolCliente->id : 2;
 
-        $usuario = new Usuario();
-
-        // Guardamos nombre y apellido por separado en sus respectivas columnas de la base de datos
-        $usuario->nombre = $request->name;       // Toma el input 'name'
-        $usuario->apellido = $request->lastname; // <-- CAPTURA EL APELLIDO. Esto es lo que soluciona el error en DBeaver
-
+        $usuario = new User();
+        $usuario->nombre = $request->name;       
+        $usuario->apellido = $request->lastname; 
         $usuario->email = $request->email;
-        $usuario->password = $request->password; // El modelo lo va a hashear solo gracias a tu configuración de casts
+        $usuario->password = \Illuminate\Support\Facades\Hash::make($request->password); 
         $usuario->rol_id = $rolId;
-
-        $usuario->save(); // Ahora pasa limpio porque 'apellido' ya no va vacío
+        $usuario->save(); 
 
         return redirect('/login')->with('success', 'Usuario registrado con éxito.');
-    } // <-- ACÁ ESTABA LA LLAVE QUE FALTABA CERRAR
+    }
 
     // 4. Procesa el inicio de sesión
     public function autenticar(Request $request) {
@@ -75,10 +89,9 @@ class AuthController extends Controller
         if (auth()->attempt($credenciales)) {
             $request->session()->regenerate();
 
-            /** @var \App\Models\Usuario $usuario */
+            /** @var \App\Models\User $usuario */
             $usuario = auth()->user();
 
-            // REDIRECCIÓN CON URL CORRECTA (CON BARRA, SIN PUNTOS)
             if ($usuario->rol_id == 1) {
                 return redirect('/admin/dashboard');
             }
@@ -101,13 +114,12 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Sesión cerrada correctamente.');
     }
 
-    // Muestra el panel del cliente con sus datos (¡Ahora permite Administradores!)
+    // Muestra el panel del cliente con sus datos
     public function panelCliente() {
         if (!auth()->check()) {
             return redirect('/login');
         }
 
-        // Se eliminó el rebote para que el Admin también pueda renderizar esta vista libremente.
         return view('backend.usuarios.cliente');
     }
 
@@ -118,7 +130,7 @@ class AuthController extends Controller
             'telefono' => 'required|string|max:50',
         ]);
 
-        /** @var \App\Models\Usuario $usuario */
+        /** @var \App\Models\User $usuario */
         $usuario = auth()->user();
 
         $usuario->direccion = $request->direccion;
@@ -127,4 +139,32 @@ class AuthController extends Controller
 
         return back()->with('success', 'Dirección actualizada correctamente.');
     }
-}
+
+    // Muestra la vista para ingresar el correo
+    public function mostrarOlvide() {
+        // Ahora apunta correctamente a 'recuperar.blade.php'
+        return view('backend.usuarios.recuperar');
+    }
+
+    // Procesa el formulario y verifica si existe en la base de datos
+    public function enviarDatosLogin(Request $request) {
+        $request->validate([
+            'email' => 'required|email',
+        ], [
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'Ingresá un formato de email válido.',
+        ]);
+
+        // Buscamos el email en tu tabla 'usuarios' (o 'users') utilizando tu modelo User
+        $usuarioExiste = \App\Models\User::where('email', $request->email)->exists();
+
+        if ($usuarioExiste) {
+            // Si existe, devuelve el mensaje de éxito que me pediste
+            return back()->with('success', 'Se mandaron tus datos de inicio de sesión a tu correo electrónico.');
+        }
+
+        // Si no existe, notifica el error de forma directa
+        return back()->withErrors(['email' => 'Este correo electrónico no se encuentra registrado en nuestro sistema.']);
+    }
+
+    }

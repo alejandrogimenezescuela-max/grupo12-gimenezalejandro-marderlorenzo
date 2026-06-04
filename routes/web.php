@@ -4,7 +4,7 @@ use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ContactoController;
 
 // Rutas para el Registro (Corregidas con ::class)
 Route::get('/register', [AuthController::class, 'formularioRegistro']);
@@ -72,3 +72,8 @@ Route::get('/admin/cargar', [ProductoController::class, 'create'])->name('backen
 
 // 2. Ruta invisible a la que el formulario le manda los datos al apretar el botón
 Route::post('/admin/productos/guardar', [ProductoController::class, 'store'])->name('backend.admin.store')->middleware('auth');
+
+Route::post('/contacto', [ContactoController::class, 'enviar']);
+
+Route::get('/olvidaste-contrasena', [AuthController::class, 'mostrarOlvide']);
+Route::post('/olvidaste-contrasena', [AuthController::class, 'enviarDatosLogin']);

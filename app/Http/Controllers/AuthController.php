@@ -47,8 +47,8 @@ class AuthController extends Controller
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:usuarios,email',
             'password' => [
-                'required', 
-                'string', 
+                'required',
+                'string',
                 'confirmed', // <-- Esta regla exige que coincida con password_confirmation
                 \Illuminate\Validation\Rules\Password::min(8)->mixedCase()
             ],
@@ -59,8 +59,8 @@ class AuthController extends Controller
             'email.email' => 'Por favor, ingresá un correo electrónico válido.',
             'email.unique' => 'Este correo electrónico ya está registrado en TatamiHUB.',
             'password.required' => 'La contraseña es obligatoria.',
-            
-            // 🔥 CLAVE: Separamos los mensajes para que Laravel sepa cuál mostrar según el error
+
+            //  CLAVE: Separamos los mensajes para que Laravel sepa cuál mostrar según el error
             'password.confirmed' => 'Las contraseñas no coinciden. Por favor, verificalas.',
             'password' => 'La contraseña debe tener al menos 8 caracteres y contener una letra mayúscula.',
         ]);
@@ -69,12 +69,12 @@ class AuthController extends Controller
         $rolId = $rolCliente ? $rolCliente->id : 2;
 
         $usuario = new User();
-        $usuario->nombre = $request->name;       
-        $usuario->apellido = $request->lastname; 
+        $usuario->nombre = $request->name;
+        $usuario->apellido = $request->lastname;
         $usuario->email = $request->email;
-        $usuario->password = \Illuminate\Support\Facades\Hash::make($request->password); 
+        $usuario->password = \Illuminate\Support\Facades\Hash::make($request->password);
         $usuario->rol_id = $rolId;
-        $usuario->save(); 
+        $usuario->save();
 
         return redirect('/login')->with('success', 'Usuario registrado con éxito.');
     }
@@ -155,7 +155,7 @@ class AuthController extends Controller
             'email.email' => 'Ingresá un formato de email válido.',
         ]);
 
-        // Buscamos el email en tu tabla 'usuarios' (o 'users') utilizando tu modelo User
+        // Buscamos el email en tu tabla 'usuarios' (o 'users') utilizando el modelo User
         $usuarioExiste = \App\Models\User::where('email', $request->email)->exists();
 
         if ($usuarioExiste) {

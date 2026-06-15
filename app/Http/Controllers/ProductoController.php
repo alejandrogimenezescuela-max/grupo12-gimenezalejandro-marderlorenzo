@@ -10,18 +10,21 @@ use Illuminate\Support\Str;
 
 class ProductoController extends Controller
 {
-    public function index()
-    {
-        $productos = Producto::with('categoria', 'variantes')->get();
-        return view('catalogo', compact('productos'));
-    }
+ public function index()
+{
+    // Limpiamos 'variantes' porque ahora talle, color y stock están acá adentro
+    $productos = Producto::with('categoria')->get();
+    return view('catalogo', compact('productos'));
+}
 
-    public function indexHome()
-    {
-        $productos = Producto::with('variantes')->get();
-        return view('home', compact('productos')); 
-    }
+ public function indexHome()
+{
+    // Cambiamos all() por with('categoria')->get() para que la vista
+    // pueda leer el nombre de la categoría sin romper nada.
+    $productos = Producto::with('categoria')->get();
 
+    return view('home', compact('productos'));
+}
     // --- Muestra el formulario de carga (Panel Admin) ---
     public function create()
     {
@@ -29,84 +32,76 @@ class ProductoController extends Controller
         return view('backend.admin.create', compact('categorias'));
     }
 
-    // --- Procesa el formulario, sube la imagen y guarda en DB ---
-    public function store(Request $request)
-    {
-        // 1. Validamos los datos principales del producto
-        $request->validate([
-            'categoria_id' => 'required|exists:categorias,id',
-            'nombre' => 'required|string|max:255',
-            'descripcion' => 'required|string',
-            'precio' => 'required|numeric|min:0',
-            'stock_minimo' => 'required|integer|min:0',
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048', // Max 2MB
-            
-            // Validación de las variantes (vienen como arrays)
-            'talle' => 'required|array',
-            'color' => 'required|array',
-            'stock' => 'required|array',
-        ]);
+public function store(Request $request)
+{
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'categoria_id' => 'required|exists:categorias,id',
+        'precio' => 'required|numeric|min:0',
+        'stock' => 'required|integer|min:0',
+        'stock_minimo' => 'nullable|integer|min:0',
+        'talle' => 'nullable|string|max:50',  // Guarda "A2" o "1kg" indistintamente
+        'color' => 'nullable|string|max:50',  // Guarda "Azul" o "Frutilla" indistintamente
+        'imagen' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+    ]);
 
-        // 2. Procesar y guardar la imagen física
-        $nombreImagen = null;
-        if ($request->hasFile('imagen')) {
-            $imagen = $request->file('imagen');
-            // Creamos un nombre único: ej: kimono-vulkan-17182938.png
-            $nombreImagen = Str::slug($request->nombre) . '-' . time() . '.' . $imagen->getClientOriginalExtension();
-            // La guarda en la carpeta pública: public/img/productos/
-            $imagen->move(public_path('img/productos'), $nombreImagen);
-        }
+    $producto = new Producto();
+    $producto->nombre = $request->nombre;
+    $producto->categoria_id = $request->categoria_id;
+    $producto->precio = $request->precio;
+    $producto->stock = $request->stock;
+    $producto->stock_minimo = $request->stock_minimo ?? 2;
+    $producto->talle = $request->talle;
+    $producto->color = $request->color;
+    $producto->descripcion = $request->descripcion;
 
-        // 3. Crear el Producto genérico en la DB
-        $producto = Producto::create([
-            'categoria_id' => $request->categoria_id,
-            'nombre' => $request->nombre,
-            'descripcion' => $request->descripcion,
-            'precio' => $request->precio,
-            'stock_minimo' => $request->stock_minimo,
-            'imagen' => 'img/productos/' . $nombreImagen, // Guardamos la ruta relativa
-        ]);
-
-        // 4. Guardar las variantes asociadas a este producto
-        foreach ($request->talle as $index => $talleValor) {
-            VarianteProducto::create([
-                'producto_id' => $producto->id, // El ID recién generado
-                'talle' => $talleValor,
-                'color' => $request->color[$index] ?? 'N/A',
-                'stock' => $request->stock[$index] ?? 0,
-            ]);
-        }
-
-        return redirect()->route('backend.admin.create')->with('success', 'Producto y variantes cargados con éxito.');
+    if ($request->hasFile('imagen')) {
+        // Guardamos la imagen en storage/app/public/productos
+        $path = $request->file('imagen')->store('productos', 'public');
+        $producto->imagen = $path;
     }
+
+    $producto->save();
+
+    return redirect()->back()->with('success', 'Producto cargado impecable.');
+}
 
     // Método para la sección Ropa (ID 1 en DBeaver)
-    public function mostrarEnRopa()
-    {
-        // CAMBIO: Buscamos 'Ropa' para que coincida exactamente con tu tabla
-        $ropa = Producto::whereHas('categoria', function($query) {
-            $query->where('nombre', 'Ropa');
-        })->with('variantes')->get();
-        return view('ropa', compact('ropa'));
-    }
+public function mostrarEnRopa()
+{
+    // Cambiamos el nombre a $ropa para que coincida con el Blade
+    $ropa = Producto::whereHas('categoria', function($query) {
+        $query->where('nombre', 'Ropa');
+    })->get();
 
+    // Se la pasamos a la vista como 'ropa'
+    return view('ropa', compact('ropa'));
+}
     // Método para la sección Suplementos (ID 3 en DBeaver)
-    public function mostrarEnSuplementos()
-    {
-        // Mantiene 'Suplementos' porque está igual en DBeaver
-        $suplementos = Producto::whereHas('categoria', function($query) {
-            $query->where('nombre', 'Suplementos');
-        })->with('variantes')->get();
-        return view('suplementos', compact('suplementos'));
-    }
+ public function mostrarEnSuplementos()
+{
+    $suplementos = Producto::whereHas('categoria', function($query) {
+        $query->where('nombre', 'Suplementos');
+    })->get();
+
+    return view('suplementos', compact('suplementos'));
+}
 
     // Método para la sección Indumentaria (ID 2 en DBeaver)
-    public function mostrarEnIndumentaria()
-    {
-        // CAMBIO: Queda buscando 'Indumentaria' para diferenciarlo de la sección Ropa
-        $indumentaria = Producto::whereHas('categoria', function($query) {
-            $query->where('nombre', 'Indumentaria');
-        })->with('variantes')->get();
-        return view('indumentaria', compact('indumentaria'));
-    }
+public function mostrarEnIndumentaria()
+{
+    $indumentaria = Producto::whereHas('categoria', function($query) {
+        $query->where('nombre', 'Indumentaria');
+    })->get();
+
+    return view('indumentaria', compact('indumentaria'));
+}
+
+public function show($id)
+{
+    // Buscamos el producto con su categoría. Si no existe, manda a error 404.
+    $producto = Producto::with('categoria')->findOrFail($id);
+
+    return view('detalles', compact('producto'));
+}
 }

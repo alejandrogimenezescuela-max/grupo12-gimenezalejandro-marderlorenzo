@@ -8,18 +8,25 @@
             <div class="card shadow-sm p-4 border-0" style="border-radius: 15px;">
                 <h2 class="fw-bold mb-4 text-uppercase text-danger">Cargar Nuevo Producto</h2>
 
-                <form action="{{ url('/admin/productos/guardar') }}" method="POST" enctype="multipart/form-data">
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show fw-bold mb-4" role="alert">
+                        ¡Misión cumplida! {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                <form action="{{ route('backend.admin.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label fw-bold text-muted">Nombre del Producto</label>
-                            <input type="text" name="nombre" class="form-control" placeholder="Ej: Kimono Vulkan BJJ" required>
+                            <input type="text" name="nombre" class="form-control" placeholder="Ej: Kimono Vulkan BJJ - Azul A2" required>
                         </div>
 
                         <div class="col-md-6">
                             <label class="form-label fw-bold text-muted">Categoría</label>
-                            <select name="categoria_id" class="form-select" required>
+                            <select name="categoria_id" id="categoria_id" class="form-select" required>
                                 <option value="" disabled selected>Seleccione una categoría</option>
                                 @foreach($categorias as $cat)
                                     <option value="{{ $cat->id }}">{{ $cat->nombre }}</option>
@@ -38,6 +45,21 @@
                         </div>
 
                         <div class="col-md-4">
+                            <label id="label-talle" class="form-label fw-bold text-muted">Talle</label>
+                            <input type="text" name="talle" id="talle" class="form-control" placeholder="Ej: A2, M, Único">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label id="label-color" class="form-label fw-bold text-muted">Color</label>
+                            <input type="text" name="color" id="color" class="form-control" placeholder="Ej: Azul, Negro">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold text-muted">Stock Real</label>
+                            <input type="number" name="stock" class="form-control" placeholder="Cantidad" min="0" required>
+                        </div>
+
+                        <div class="col-md-4">
                             <label class="form-label fw-bold text-muted">Stock Mínimo Alerta</label>
                             <input type="number" name="stock_minimo" class="form-control" value="2" required>
                         </div>
@@ -47,32 +69,6 @@
                             <input type="file" name="imagen" class="form-control" accept="image/*" required>
                         </div>
                     </div>
-
-                    <hr class="my-4">
-
-                    <h4 class="fw-bold text-dark mb-3">Gestión de Variantes de Stock</h4>
-                    <p class="text-muted small">Cargá las combinaciones disponibles para este producto.</p>
-
-                    <div id="contenedor-variantes">
-                        <div class="row g-2 variante-fila mb-2">
-                            <div class="col-md-4">
-                                <input type="text" name="talle[]" class="form-control" placeholder="Talle (Ej: A2, M, Único)" required>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" name="color[]" class="form-control" placeholder="Color (Ej: Azul, Negro)" required>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="number" name="stock[]" class="form-control" placeholder="Stock Real" min="0" required>
-                            </div>
-                            <div class="col-md-1">
-                                <button type="button" class="btn btn-outline-danger w-100" onclick="eliminarFila(this)">X</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="button" class="btn btn-dark btn-sm mt-2" id="btn-agregar-variante">
-                        + Agregar otra variante
-                    </button>
 
                     <div class="mt-5">
                         <button type="submit" class="btn btn-danger btn-lg w-100">
@@ -86,35 +82,32 @@
 </div>
 
 <script>
-    document.getElementById('btn-agregar-variante').addEventListener('click', function() {
-        let contenedor = document.getElementById('contenedor-variantes');
-        let nuevaFila = document.createElement('div');
-        nuevaFila.className = 'row g-2 variante-fila mb-2';
-        nuevaFila.innerHTML = `
-            <div class="col-md-4">
-                <input type="text" name="talle[]" class="form-control" placeholder="Talle" required>
-            </div>
-            <div class="col-md-4">
-                <input type="text" name="color[]" class="form-control" placeholder="Color" required>
-            </div>
-            <div class="col-md-3">
-                <input type="number" name="stock[]" class="form-control" placeholder="Stock Real" min="0" required>
-            </div>
-            <div class="col-md-1">
-                <button type="button" class="btn btn-outline-danger w-100" onclick="eliminarFila(this)">X</button>
-            </div>
-        `;
-        contenedor.appendChild(nuevaFila);
-    });
+document.getElementById('categoria_id').addEventListener('change', function() {
+    // Conseguimos el texto de la categoría elegida
+    let categoriaTexto = this.options[this.selectedIndex].text.trim().toLowerCase();
 
-    function eliminarFila(boton) {
-        let filas = document.querySelectorAll('.variante-fila');
-        if (filas.length > 1) {
-            boton.closest('.variante-fila').remove();
-        } else {
-            alert("El producto debe tener al menos una variante.");
-        }
+    // Agarramos las etiquetas por su ID
+    let labelTalle = document.getElementById('label-talle');
+    let labelColor = document.getElementById('label-color');
+
+    // Agarramos los inputs por su ID
+    let inputTalle = document.getElementById('talle');
+    let inputColor = document.getElementById('color');
+
+    if (categoriaTexto === 'suplementos') {
+        // Si eligen Suplementos, mutamos el diseño a kilos y sabores
+        labelTalle.innerText = "Presentación (Peso / Caps)";
+        labelColor.innerText = "Sabor / Detalle";
+        inputTalle.placeholder = "Ej: 1kg, 90 caps, 300g";
+        inputColor.placeholder = "Ej: Frutilla, Chocolate, Sin Sabor";
+    } else {
+        // Si eligen Ropa o Indumentaria, vuelve a lo normal
+        labelTalle.innerText = "Talle";
+        labelColor.innerText = "Color";
+        inputTalle.placeholder = "Ej: A2, M, Único";
+        inputColor.placeholder = "Ej: Azul, Negro";
     }
+});
 </script>
 
 @endsection

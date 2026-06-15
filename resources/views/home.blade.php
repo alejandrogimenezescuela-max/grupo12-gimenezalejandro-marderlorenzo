@@ -73,7 +73,7 @@
                                 <div class="bjj-product-card">
                                     <div class="bjj-product-display">
                                         @if($p->imagen)
-                                            <img src="{{ asset('storage/' . $p->imagen) }}" alt="{{ $p->nombre }}">
+                                            <img src="{{ asset($p->imagen) }}" alt="{{ $p->nombre }}">
                                         @else
                                             <img src="{{ asset('img/productos/placeholder.jpg') }}" alt="Sin imagen">
                                         @endif
@@ -83,31 +83,55 @@
                                         <h5 class="bjj-product-name">{{ $p->nombre }}</h5>
 
                                         <div class="bjj-size-selector">
-                                            <small>Talles Disponibles:</small>
-                                            <div class="bjj-size-options">
-                                                @foreach($p->variantes as $variante)
-                                                    @if($variante->stock > 0)
-                                                        <button class="bjj-size-tag">{{ $variante->talle }}</button>
-                                                    @endif
-                                                @endforeach
+                                            @if($p->talle)
+                                                <small class="fw-bold text-muted">Talle: <span class="text-white">{{ $p->talle }}</span></small>
+                                            @endif
+
+                                            @if($p->color)
+                                                <br>
+                                                <small class="fw-bold text-muted">Color: <span class="text-white">{{ $p->color }}</span></small>
+                                            @endif
+
+                                            <div class="bjj-size-options mt-2">
+                                                @if($p->stock > 0)
+                                                    <span class="badge bg-success">En Stock ({{ $p->stock }})</span>
+                                                @else
+                                                    <span class="badge bg-danger">Sin Stock</span>
+                                                @endif
                                             </div>
                                         </div>
 
-                                        <div class="bjj-purchase-row">
-                                            <span class="bjj-price-tag">${{ number_format($p->precio, 0, ',', '.') }}</span>
-                                            <button class="bjj-add-to-cart">Añadir</button>
+                                        <div class="bjj-purchase-row mt-3 d-flex align-items-center justify-content-between" style="width: 100%;">
+                                            <span class="bjj-price-tag m-0" style="font-size: 1.25rem; font-weight: bold; color: #fff;">
+                                                ${{ number_format($p->precio, 0, ',', '.') }}
+                                            </span>
+
+                                            @if($p->stock > 0)
+                                                <a href="{{ route('producto.show', $p->id) }}"
+                                                   class="bjj-add-to-cart text-decoration-none d-inline-flex align-items-center justify-content-center"
+                                                   style="padding: 6px 15px; min-width: 75px; height: 35px; margin: 0; font-size: 0.9rem; font-weight: bold; text-transform: uppercase; background-color: #ed1c24; color: white; border-radius: 5px;">
+                                                    Ver
+                                                </a>
+                                            @else
+                                                <button class="bjj-add-to-cart btn-secondary d-inline-flex align-items-center justify-content-center"
+                                                        disabled
+                                                        style="padding: 6px 15px; min-width: 75px; height: 35px; margin: 0; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; opacity: 0.6;">
+                                                    Agotado
+                                                </button>
+                                            @endif
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @endforeach {{-- Cierre del bucle de productos --}}
 
                     </div>
                 </div>
             </div>
-        @empty
+        @empty {{-- Cierre del forelse si no hay items --}}
             <div class="text-center py-5">
-                <p class="text-muted">No hay productos destacados disponibles en este momento.</p>
+                <p class="text-muted">No hay productos destacados cargados en este momento.</p>
             </div>
         @endforelse
 

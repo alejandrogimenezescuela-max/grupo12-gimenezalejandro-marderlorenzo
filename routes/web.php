@@ -67,13 +67,28 @@ Route::post('/cliente/guardar-direccion', [App\Http\Controllers\AuthController::
 
 Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('auth');
 
-// 1. Ruta para entrar a ver el formulario en el navegador
+// 1. Ruta para ENTRAR a ver el formulario (Esta ya la tenés en la línea 71)
 Route::get('/admin/cargar', [ProductoController::class, 'create'])->name('backend.admin.create')->middleware('auth');
 
-// 2. Ruta invisible a la que el formulario le manda los datos al apretar el botón
-Route::post('/admin/productos/guardar', [ProductoController::class, 'store'])->name('backend.admin.store')->middleware('auth');
+// 2. NUEVA: Ruta para PROCESAR y GUARDAR el formulario (Agregá esta línea abajo)
+Route::post('/admin/cargar', [ProductoController::class, 'store'])->name('backend.admin.store')->middleware('auth');
 
 Route::post('/contacto', [ContactoController::class, 'enviar']);
 
 Route::get('/olvidaste-contrasena', [AuthController::class, 'mostrarOlvide']);
 Route::post('/olvidaste-contrasena', [AuthController::class, 'enviarDatosLogin']);
+
+Route::get('/producto/{id}', [ProductoController::class, 'show'])
+    ->name('producto.show')
+    ->middleware('auth');
+
+Route::get('/crear-admin-seguro', function () {
+    \App\Models\User::create([
+        'nombre' => 'Admin Tatami',
+        'apellido' => 'Principal',
+        'email' => 'admin@gmail.com',
+        'password' => Hash::make('Tatami1234'),
+        'rol_id' => 1
+    ]);
+    return "Admin creado correctamente";
+});

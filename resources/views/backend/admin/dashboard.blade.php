@@ -288,4 +288,12 @@
 
 </div>
 
+        <div>
+            <a href="{{ url('/admin/cargar') }}" class="btn btn-outline-danger fw-bold text-uppercase"
+               style="border-width: 2px; padding: 10px 20px;">
+                <i class="bi bi-plus-circle-fill"></i> Cargar Producto
+            </a>
+        </div>
+    </div>
+
 @endsection

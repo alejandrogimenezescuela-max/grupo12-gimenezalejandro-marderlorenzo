@@ -1,0 +1,27 @@
+[33m8cc27dc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: reset: moving to origin/main
+[33m03cd822[m HEAD@{1}: commit (merge): Se corrigio lo bugs de prducto
+[33m2331cf1[m HEAD@{2}: commit: Se arreglaron cosas y bugs de producto ahora cargan imagenes y se agrego el detalle
+[33md48a7fb[m HEAD@{3}: pull origin main: Fast-forward
+[33mfdd6c2e[m HEAD@{4}: commit: Se agrego la funcionalidad inicio de sesión y registro ademas de agregarse el panel de admin y cliente
+[33m1831002[m HEAD@{5}: pull origin main: Fast-forward
+[33mc5300d4[m HEAD@{6}: reset: moving to HEAD
+[33mc5300d4[m HEAD@{7}: pull origin main: Fast-forward
+[33me20d096[m HEAD@{8}: commit: Se agrego controlador para modularizar el codigo
+[33me863d96[m HEAD@{9}: commit: Se agrego el .env copy
+[33m7ad7b15[m HEAD@{10}: commit: Se elimino la database
+[33mbcc70af[m HEAD@{11}: commit: Se corrigio errores de sintaxis
+[33mac20109[m HEAD@{12}: commit: Se corrigio algunas secciones
+[33m6f2da7f[m HEAD@{13}: commit: Se mejoro los carruseles se agrego mas productos y finalmente se modularizo la carpeta de imagenes
+[33m6d45fe0[m HEAD@{14}: pull origin main: Fast-forward
+[33m41f40be[m HEAD@{15}: pull origin main: Fast-forward
+[33m43d95ce[m HEAD@{16}: pull origin main: Fast-forward
+[33m895289e[m HEAD@{17}: commit: Se agregó un preloader
+[33m15b6240[m HEAD@{18}: commit: Se terminó la seccion contacto agregando un mapa de google maps, se corrigió algunos errores visuales
+[33m9400e2a[m HEAD@{19}: pull origin main: Fast-forward
+[33m6d00338[m HEAD@{20}: checkout: moving from main to main
+[33m6d00338[m HEAD@{21}: commit: Se modularizó el layout y se mejoró el footer
+[33mdf31552[m HEAD@{22}: commit: Se agrego nuevas secciones y nuevas funcionalidades a los botones
+[33m60bb631[m HEAD@{23}: pull origin main: Fast-forward
+[33mcf1841b[m HEAD@{24}: commit: Version 1.2 se agregó la seccion Nosotros con informacion acerca de la empresa
+[33m5b72d03[m HEAD@{25}: Branch: renamed refs/heads/master to refs/heads/main
+[33m5b72d03[m HEAD@{27}: commit (initial): Version 1

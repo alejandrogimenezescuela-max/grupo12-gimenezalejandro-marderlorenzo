@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Producto extends Model
 {
+
+    use SoftDeletes;
+
     protected $table = 'productos';
 
     // CORRECCIÓN: Agregamos talle, color y stock para que Laravel te deje guardarlos de una

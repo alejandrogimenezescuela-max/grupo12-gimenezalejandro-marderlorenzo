@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}">
     @include('partes.header')
 

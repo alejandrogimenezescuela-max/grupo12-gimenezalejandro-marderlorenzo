@@ -13,10 +13,10 @@ public function up()
 {
     Schema::create('productos', function (Blueprint $table) {
         $table->id();
-        
+
         // 1. Creamos la clave foránea que te estaba faltando
         $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
-        
+
         $table->string('nombre');
         $table->text('descripcion');
         $table->decimal('precio', 8, 2);

@@ -11,9 +11,5 @@ class Contacto extends Model
 
     protected $table = 'contactos'; // Forzamos el nombre de la tabla en español
 
-    protected $fillable = [
-        'nombre',
-        'email',
-        'mensaje',
-    ];
+   protected $fillable = ['nombre', 'email', 'mensaje', 'leida'];
 }

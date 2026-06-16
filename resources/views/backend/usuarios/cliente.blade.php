@@ -2,72 +2,7 @@
 @section('title', 'Perfil')
 @section('content')
 
-<style>
-    /* Estilos exclusivos para el panel de perfil */
-    .btn-tatami-red {
-        background-color: #e31919;
-        color: #ffffff;
-        font-weight: 600;
-        border: none;
-        border-radius: 8px;
-        padding: 8px 20px;
-        transition: all 0.2s ease;
-    }
-    .btn-tatami-red:hover {
-        background-color: #b81212;
-        color: #ffffff;
-    }
-    .btn-tatami-outline-red {
-        background-color: transparent;
-        color: #e31919;
-        border: 2px solid #e31919;
-        font-weight: 600;
-        border-radius: 8px;
-        padding: 8px 20px;
-        width: 100%;
-        transition: all 0.2s ease;
-    }
-    .btn-tatami-outline-red:hover {
-        background-color: #e31919;
-        color: #ffffff;
-    }
-    .btn-tatami-cart {
-        background-color: #212529;
-        color: #ffffff;
-        font-weight: 600;
-        border: none;
-        border-radius: 10px;
-        transition: all 0.2s ease;
-    }
-    .btn-tatami-cart:hover {
-        background-color: #000000;
-        color: #ffffff;
-    }
-    .card-custom {
-        border: none;
-        border-radius: 15px;
-        background-color: #ffffff;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        padding: 25px;
-        height: 100%;
-    }
-    .text-tatami-red {
-        color: #e31919;
-        font-weight: 700;
-    }
-    .avatar-circle {
-        width: 90px;
-        height: 90px;
-        background-color: #802020;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-    }
-</style>
+
 
 <div class="container mt-5 mb-4">
     <div class="d-flex justify-content-between align-items-start">

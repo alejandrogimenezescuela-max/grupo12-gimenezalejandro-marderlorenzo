@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <a href="{{ url('/construccion') }}" class="btn btn-tatami-cart w-100 py-2.5 text-center d-block text-decoration-none">
+                    <a href="{{ route('cliente.carrito') }}" class="btn btn-tatami-cart w-100 py-2.5 text-center d-block text-decoration-none">
                         <i class="bi bi-cart-fill me-2"></i> Ver tu carrito
                     </a>
                 </div>

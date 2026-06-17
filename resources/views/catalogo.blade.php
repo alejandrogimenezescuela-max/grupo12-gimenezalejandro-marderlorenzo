@@ -85,7 +85,7 @@
                                             <span class="bjj-price-tag">${{ number_format($p->precio, 0, ',', '.') }}</span>
 
                                             @if($p->stock > 0)
-                                                <button class="bjj-add-to-cart">Añadir</button>
+                                            <a href="{{ route('producto.show', $p->id) }}" class="tth-btn" style="margin-left: auto;">Ver</a>
                                             @else
                                                 <button class="bjj-add-to-cart btn-secondary" disabled>Agotado</button>
                                             @endif

@@ -54,11 +54,11 @@
                     </li>
                 @endguest
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/construccion') }}" title="Carrito">
-                        <i class="bi bi-cart" style="font-size: 1.2rem;"></i>
-                    </a>
-                </li>
+              <li class="nav-item">
+        <a class="nav-link" href="{{ route('cliente.carrito') }}" title="Carrito">
+           <i class="bi bi-cart" style="font-size: 1.2rem;"></i>
+    </a>
+        </li>
             </ul>
         </div>
     </div>

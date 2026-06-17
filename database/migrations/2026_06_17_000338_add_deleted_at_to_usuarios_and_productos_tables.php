@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+ public function up()
+{
+    Schema::table('usuarios', function (Blueprint $table) {
+        // Usamos una condición para evitar errores si la columna ya existiera por accidente
+        if (!Schema::hasColumn('usuarios', 'deleted_at')) {
+            $table->softDeletes();
+        }
+    });
+}
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('usuarios_and_productos_tables', function (Blueprint $table) {
+            //
+        });
+    }
+};

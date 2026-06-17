@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 // 1. Vinculamos el modelo a tu tabla real "usuarios"
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
+    const DELETED_AT = 'deleted_at';
     protected $table = 'usuarios'; // Le avisamos a Laravel que la tabla se llama usuarios
 
     // 2. Habilitamos TODOS los campos de tu formulario y tabla para que se puedan guardar
@@ -46,4 +48,10 @@ class User extends Authenticatable
             'password' => 'hashed', // Esto encripta la contraseña automáticamente al guardar
         ];
     }
+
+    public function tienePerfilCompleto()
+{
+    // Devuelve true si ambos campos tienen datos
+    return !empty($this->direccion) && !empty($this->telefono);
+}
 }

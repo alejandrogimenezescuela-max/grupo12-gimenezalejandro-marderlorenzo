@@ -4,7 +4,7 @@
 
 <div class="container my-5">
     <div class="row align-items-center">
-        
+
         {{-- Columna Izquierda: Mensaje de Bienvenida --}}
         <div class="col-md-6 text-dark pe-md-5 mb-5 mb-md-0">
             <img src="{{ asset('img/miscalenea/preloader.png') }}" alt="TatamiHUB" class="img-fluid mb-4" style="max-width: 320px; height: auto;">
@@ -18,10 +18,10 @@
         {{-- Columna Derecha: Tarjeta del Formulario --}}
         <div class="col-md-6">
             <div class="card border-0 shadow-sm p-4 p-md-5" style="border-radius: 20px; background-color: #fff;">
-                
+
                 <h2 class="text-center fw-bold mb-4" style="letter-spacing: -1px; color: #111;">CREAR CUENTA</h2>
 
-                {{-- 🔥 CARTEL DE ERRORES: Esto te va a decir la posta si falla un campo --}}
+
                 @if ($errors->any())
                     <div class="alert alert-danger border-0 shadow-sm mb-4" style="border-radius: 10px; color: #721c24; background-color: #f8d7da;">
                         <b style="display: block; margin-bottom: 5px;">Por favor, corregí los siguientes errores:</b>

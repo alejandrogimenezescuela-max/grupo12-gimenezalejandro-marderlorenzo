@@ -4,9 +4,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\CarritoController;
 
 
 // --- RUTAS PÚBLICAS (Cualquiera puede acceder) ---
@@ -16,7 +16,6 @@ Route::get('/comercializacion', fn() => view('comercializacion'));
 Route::get('/terminos', fn() => view('terminos'));
 Route::get('/construccion', fn() => view('construccion'));
 Route::get('/contacto', fn() => view('contacto'));
-Route::get('/exito', fn() => view('exito'));
 Route::get('/catalogo', [ProductoController::class, 'index']);
 Route::get('/ropa', [ProductoController::class, 'mostrarEnRopa']);
 Route::get('/suplementos', [ProductoController::class, 'mostrarEnSuplementos']);
@@ -39,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cliente', [AuthController::class, 'panelCliente']);
     Route::post('/cliente/guardar-direccion', [AuthController::class, 'guardarDireccion'])->name('cliente.guardar_direccion');
     Route::get('/producto/{id}', [ProductoController::class, 'show'])->name('producto.show');
+    Route::get('/descargar-comprobante', [CarritoController::class, 'generarComprobante'])->name('comprobante.generar');
 });
 
 // --- RUTAS PROTEGIDAS: SOLO ADMINISTRADORES (Middleware 'es_admin') ---
@@ -52,6 +52,7 @@ Route::middleware(['auth', 'es_admin'])->prefix('admin')->group(function () {
     Route::get('/editar/{id}', [AdminController::class, 'edit'])->name('producto.edit');
     Route::put('/update/{id}', [AdminController::class, 'update'])->name('producto.update');
     Route::delete('/eliminar/{id}', [AdminController::class, 'destroy'])->name('producto.destroy');
+    Route::get('/admin/ventas', [AdminController::class, 'verVentas'])->name('admin.ventas');
 
     // Gestión de usuarios
     Route::get('/usuarios', [AdminController::class, 'listarUsuarios'])->name('admin.usuarios');
@@ -62,6 +63,21 @@ Route::middleware(['auth', 'es_admin'])->prefix('admin')->group(function () {
     //Gestion de consultas
     Route::get('/admin/consultas', [ContactoController::class, 'indexAdmin'])->name('admin.consultas');
     Route::put('/admin/consultas/{id}', [ContactoController::class, 'marcarLeida'])->name('admin.consultas.marcar');
+});
+
+// --- Rutas del Carrito de Compras ---
+Route::middleware(['auth'])->group(function () {
+    Route::get('/carrito', [CarritoController::class, 'index'])->name('cliente.carrito');
+    Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+    Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+
+    // MANTÉN SOLO ESTA LÍNEA PARA CONFIRMAR
+    Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
+
+    // Esta es tu ruta para la vista de éxito
+    Route::get('/compra-confirmada', function () {
+        return view('backend.usuarios.compra-confirmada');
+    })->name('compra.confirmada'); // <--- ESTE ES EL NOMBRE CORRECTO
 });
 
 // Ruta de emergencia

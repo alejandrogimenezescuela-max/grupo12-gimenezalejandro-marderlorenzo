@@ -4,14 +4,13 @@
 
 <div class="container main-container">
 
-    {{-- Encabezado con Flex Wrap para evitar que se rompa --}}
+    {{-- Encabezado --}}
     <div class="dashboard-header d-flex flex-wrap justify-content-between align-items-center mb-4">
         <div class="mb-2">
             <h1 class="dashboard-title">Panel de Administración</h1>
             <p class="dashboard-welcome">Bienvenido, {{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</p>
         </div>
 
-        {{-- Contenedor de botones --}}
         <div class="d-flex gap-2 flex-wrap">
             <a href="{{ route('admin.consultas') }}"
                class="btn btn-primary fw-bold text-uppercase"
@@ -28,14 +27,36 @@
             </a>
         </div>
     </div>
-    {{-- Fin del header --}}
 
+    {{-- Cards de estadísticas --}}
     <div class="row g-4 mb-4">
-        <div class="col-md-4"><div class="tatami-card card-users"><i class="bi bi-people-fill card-icon"></i><div class="card-content"><h5>Usuarios</h5><h2>{{ $cantUsuarios }}</h2></div></div></div>
-        <div class="col-md-4"><div class="tatami-card card-products"><i class="bi bi-box-seam-fill card-icon"></i><div class="card-content"><h5>Productos</h5><h2>{{ $cantProductos }}</h2></div></div></div>
-        <div class="col-md-4"><div class="tatami-card card-orders"><i class="bi bi-cart-fill card-icon"></i><div class="card-content"><h5>Pedidos</h5><h2>{{ $cantPedidos }}</h2></div></div></div>
+        <div class="col-md-4">
+            <div class="tatami-card card-users">
+                <i class="bi bi-people-fill card-icon"></i>
+                <div class="card-content"><h5>Usuarios</h5><h2>{{ $cantUsuarios }}</h2></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="tatami-card card-products">
+                <i class="bi bi-box-seam-fill card-icon"></i>
+                <div class="card-content"><h5>Productos</h5><h2>{{ $cantProductos }}</h2></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            {{-- Botón de Ventas --}}
+            <a href="{{ route('admin.ventas') }}" class="text-decoration-none">
+                <div class="tatami-card card-orders" style="cursor: pointer;">
+                    <i class="bi bi-cart-fill card-icon"></i>
+                    <div class="card-content">
+                        <h5>Ventas</h5>
+                        <h2>{{ $cantVentas }}</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 
+    {{-- Tabla de Usuarios --}}
     <div class="tatami-table-container">
         <div class="tatami-table-header"><h4><i class="bi bi-table"></i> Usuarios del Sistema</h4></div>
         <div class="tatami-table-body table-responsive">

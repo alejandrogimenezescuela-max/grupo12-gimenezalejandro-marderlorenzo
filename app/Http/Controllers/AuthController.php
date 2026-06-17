@@ -96,7 +96,7 @@ class AuthController extends Controller
                 return redirect('/admin/dashboard');
             }
 
-            return redirect('/cliente');
+            return redirect('/catalogo');
         }
 
         return back()->withErrors([

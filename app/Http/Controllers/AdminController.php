@@ -3,25 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usuario; // Asegúrate que tu modelo sea este o User
 use App\Models\Producto;
 use App\Models\User;
+use App\Models\VentaCabecera;
 
 class AdminController extends Controller
 {
-    public function dashboard()
-    {
-        if (!auth()->check() || auth()->user()->rol_id != 1) {
-            return redirect('/cliente');
-        }
+   public function dashboard()
+{
+    $usuarios = User::all();
+    $cantUsuarios = $usuarios->count();
+    $cantProductos = Producto::count();
+    $cantVentas = \App\Models\VentaCabecera::where('estado', '=', 'confirmado')->count();
 
-        $usuarios = User::all();
-        $cantUsuarios = $usuarios->count();
-        $cantProductos = Producto::count();
-        $cantPedidos = 0;
-
-        return view('backend.admin.dashboard', compact('usuarios', 'cantUsuarios', 'cantProductos', 'cantPedidos'));
-    }
+    return view('backend.admin.dashboard', compact('usuarios', 'cantUsuarios', 'cantProductos', 'cantVentas'));
+}
 
     public function verProductos()
     {
@@ -51,15 +47,20 @@ class AdminController extends Controller
         return redirect()->route('admin.productos')->with('success', 'Producto eliminado correctamente');
     }
 
-    public function eliminarUsuario($id)
-    {
-        $usuario = User::findOrFail($id);
-        if ($usuario->rol_id == 1) {
-            return redirect()->back()->with('error', 'No puedes eliminar a un administrador.');
-        }
-        $usuario->delete();
-        return redirect()->back()->with('success', 'Usuario eliminado correctamente.');
+public function eliminarUsuario($id)
+{
+    $usuario = User::findOrFail($id);
+
+    if ($usuario->rol_id == 1) {
+        return redirect()->back()->with('error', 'No puedes eliminar a un administrador.');
     }
+
+    // Al ejecutarse el delete, Laravel ya hace el SoftDelete gracias al trait
+    $usuario->delete();
+
+    // Redirigimos al dashboard con un mensaje de éxito
+    return redirect()->route('admin.dashboard')->with('success', 'Usuario eliminado correctamente.');
+}
 
     public function editarUsuario($id)
     {
@@ -83,7 +84,20 @@ class AdminController extends Controller
     public function listarUsuarios()
     {
         $usuarios = User::all();
-        // Cuidado: antes tenías 'usuarios-editar' aquí. Si es para listar, debe ser 'index' o similar.
         return view('backend.admin.dashboard', compact('usuarios'));
     }
+
+    public function verVentas(Request $request)
+{
+    // Obtenemos las ventas aplicando los filtros y paginación
+    $ventas = VentaCabecera::with('user') // Cargamos el usuario para mostrar quién compró
+        ->filtrar($request)
+        ->latest()
+        ->paginate(15);
+
+    return view('backend.admin.ventas', compact('ventas'));
+}
+
+
+
 }

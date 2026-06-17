@@ -58,33 +58,39 @@
                     </div>
                 </div>
 
-                <div class="mt-5">
-                    @if($producto->stock > 0)
-                        <div class="mb-3 text-success fw-bold">DISPONIBLE ({{ $producto->stock }} unidades)</div>
-                        <div class="row g-2">
-                            <div class="col-md-4">
-                                <input type="number" value="1" min="1" max="{{ $producto->stock }}" class="form-control form-control-lg bg-dark text-white border-secondary text-center" style="height: 56px;">
-                            </div>
-                            <div class="col-md-8">
-      <button type="button" class="btn btn-danger btn-lg w-100 fw-bold shadow-sm"
-    style="padding: 18px 0;
-           font-size: 1.25rem;
-           text-transform: uppercase;
-           letter-spacing: 1.5px;
-           border-radius: 8px;
-           background-color: #dc3545 !important;
-           border-color: #dc3545 !important;">
-    Añadir al Carrito
-</button>
-                            </div>
-                        </div>
-                    @else
-                        <div class="mb-3 text-danger fw-bold">AGOTADO MOMENTÁNEAMENTE</div>
-                        <button class="btn btn-secondary btn-lg w-100 fw-bold py-3 text-uppercase" disabled>
-                            Producto Agotado
-                        </button>
-                    @endif
+             <div class="mt-5">
+    @if($producto->stock > 0)
+        <div class="mb-3 text-success fw-bold">DISPONIBLE ({{ $producto->stock }} unidades)</div>
+
+        <form action="{{ route('carrito.agregar') }}" method="POST">
+            @csrf
+            {{-- Campo oculto para identificar el producto --}}
+            <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+
+            <div class="row g-2">
+                <div class="col-md-4">
+                    {{-- Input de cantidad --}}
+                    <input type="number" name="cantidad" value="1" min="1" max="{{ $producto->stock }}"
+                           class="form-control form-control-lg bg-dark text-white border-secondary text-center"
+                           style="height: 56px;">
                 </div>
+                <div class="col-md-8">
+                    {{-- Botón de envío --}}
+                    <button type="submit" class="btn btn-danger btn-lg w-100 fw-bold shadow-sm"
+                            style="padding: 18px 0; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 8px; background-color: #dc3545 !important; border-color: #dc3545 !important;">
+                        Añadir al Carrito
+                    </button>
+                </div>
+            </div>
+        </form>
+    @else
+        {{-- Bloque para cuando no hay stock --}}
+        <div class="mb-3 text-danger fw-bold">AGOTADO MOMENTÁNEAMENTE</div>
+        <button class="btn btn-secondary btn-lg w-100 fw-bold py-3 text-uppercase" disabled>
+            Producto Agotado
+        </button>
+    @endif
+</div>
             </div>
         </div>
     </div>

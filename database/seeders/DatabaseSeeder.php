@@ -11,9 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Llamamos al seeder que creaste para cargar los roles
         $this->call([
-            RolesSeeder::class,
+        ProductoSeeder::class,
         ]);
     }
 }

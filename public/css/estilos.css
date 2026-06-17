@@ -1120,3 +1120,21 @@ textarea {
     }
     .tth-btn:hover { background: #c7151c; color: white; }
     .tth-btn:disabled { background: #444; color: #aaa; cursor: not-allowed; }
+
+    .btn-estatico {
+        background-color: #212529 !important; /* Color oscuro */
+        color: white !important;
+        border: none !important;
+        border-radius: 0 !important; /* Quita redondeo si lo deseas */
+        cursor: default !important; /* El puntero no cambia a mano */
+    }
+
+    /* Forzamos a que no cambie nada en eventos */
+    .btn-estatico:hover,
+    .btn-estatico:focus,
+    .btn-estatico:active {
+        background-color: #212529 !important;
+        color: white !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }

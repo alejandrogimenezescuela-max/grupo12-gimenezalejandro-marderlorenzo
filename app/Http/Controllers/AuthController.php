@@ -167,4 +167,48 @@ class AuthController extends Controller
         return back()->withErrors(['email' => 'Este correo electrónico no se encuentra registrado en nuestro sistema.']);
     }
 
+    public function verHistorial()
+{
+    // Buscamos las ventas del usuario actual, ordenadas de la más nueva a la más vieja
+    $ventas = \App\Models\VentaCabecera::where('user_id', auth()->id())
+              ->orderBy('created_at', 'desc')
+              ->get();
+
+    return view('backend.usuarios.historial', compact('ventas'));
+}
+
+public function verDetalle($id)
+{
+    // Buscamos la venta y cargamos sus detalles (asumiendo que el modelo tiene la relación 'detalles')
+    $venta = \App\Models\VentaCabecera::where('id', $id)
+             ->where('user_id', auth()->id()) // Seguridad: que solo vea lo suyo
+             ->firstOrFail();
+
+    return view('backend.usuarios.historial', compact('venta'));
+}
+
+public function updatePerfil(Request $request)
+{
+    $user = auth()->user();
+
+    // Validamos: correo único (excepto el propio) y contraseña opcional
+    $request->validate([
+        'email' => 'required|email|unique:usuarios,email,' . $user->id,
+        'password' => 'nullable|min:8|confirmed',
+    ], [
+        'email.unique' => 'Ese correo ya está siendo utilizado por otro usuario.',
+        'password.confirmed' => 'Las contraseñas no coinciden.',
+    ]);
+
+    $user->email = $request->email;
+
+    if ($request->filled('password')) {
+        $user->password = Hash::make($request->password);
+    }
+
+    $user->save();
+
+    return back()->with('success', 'Perfil actualizado con éxito.');
+}
+
     }

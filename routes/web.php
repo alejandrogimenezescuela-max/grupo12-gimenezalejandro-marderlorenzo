@@ -39,6 +39,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cliente/guardar-direccion', [AuthController::class, 'guardarDireccion'])->name('cliente.guardar_direccion');
     Route::get('/producto/{id}', [ProductoController::class, 'show'])->name('producto.show');
     Route::get('/descargar-comprobante', [CarritoController::class, 'generarComprobante'])->name('comprobante.generar');
+    Route::get('/cliente/historial', [AuthController::class, 'verHistorial'])->name('cliente.historial');
+    Route::get('/cliente/detalle/{id}', [AuthController::class, 'verDetalle'])->name('cliente.detalle');
+    Route::put('/cliente/actualizar', [AuthController::class, 'updatePerfil'])->name('cliente.updatePerfil');
 });
 
 // --- RUTAS PROTEGIDAS: SOLO ADMINISTRADORES (Middleware 'es_admin') ---

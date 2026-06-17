@@ -1,8 +1,8 @@
 APP_NAME=Laravel
 APP_ENV=local
-APP_KEY=
+APP_KEY=base64:jJ/vlu9oDq4HPndI/foACMkFpmmOWXqtDYAtFps3sXM=
 APP_DEBUG=true
-APP_URL=http://localhost
+APP_URL=http://grupo12-lorenzomarder-gimenezalejandro.test
 
 APP_LOCALE=en
 APP_FALLBACK_LOCALE=en
@@ -20,25 +20,26 @@ LOG_STACK=single
 LOG_DEPRECATIONS_CHANNEL=null
 LOG_LEVEL=debug
 
-DB_CONNECTION=sqlite
-# DB_HOST=127.0.0.1
-# DB_PORT=3306
-# DB_DATABASE=laravel
-# DB_USERNAME=root
-# DB_PASSWORD=
+# CONFIGURACIÓN DE BASE DE DATOS (Mantenida en sqlite pero sin ruta fija)
+# CONFIGURACIÓN DE BASE DE DATOS PARA TATAMIHUB
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=tatamihub_db
+DB_USERNAME=root
+DB_PASSWORD=admin123
 
-SESSION_DRIVER=database
+# DRIVERS DE ALMACENAMIENTO (Cambiados a 'file' para evitar errores de tablas)
+SESSION_DRIVER=file
 SESSION_LIFETIME=120
 SESSION_ENCRYPT=false
 SESSION_PATH=/
 SESSION_DOMAIN=null
 
-BROADCAST_CONNECTION=log
+CACHE_STORE=file
 FILESYSTEM_DISK=local
-QUEUE_CONNECTION=database
-
-CACHE_STORE=database
-# CACHE_PREFIX=
+QUEUE_CONNECTION=sync
+BROADCAST_CONNECTION=log
 
 MEMCACHED_HOST=127.0.0.1
 
@@ -47,6 +48,7 @@ REDIS_HOST=127.0.0.1
 REDIS_PASSWORD=null
 REDIS_PORT=6379
 
+# CORREO (Configurado en 'log' para que no falle al intentar enviar emails)
 MAIL_MAILER=log
 MAIL_SCHEME=null
 MAIL_HOST=127.0.0.1

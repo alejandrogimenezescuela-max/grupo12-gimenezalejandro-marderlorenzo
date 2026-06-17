@@ -8,7 +8,7 @@
             <div class="col-md-4 col-sm-6">
                 <div class="tth-card">
                     <div class="tth-img-wrapper">
-                        <img src="{{ $p->imagen ? asset($p->imagen) : asset('img/productos/placeholder.jpg') }}"
+                        <img src="{{ asset('storage/' . $p->imagen) }}" alt="Imagen de {{ $p->nombre }}">
                              alt="{{ $p->nombre }}">
                     </div>
 

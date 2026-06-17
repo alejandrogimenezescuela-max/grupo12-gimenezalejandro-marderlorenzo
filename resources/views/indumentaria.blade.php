@@ -9,8 +9,7 @@
                 <div class="tth-card">
                     {{-- Contenedor de imagen --}}
                     <div class="tth-img-wrapper">
-                        <img src="{{ $p->imagen ? asset($p->imagen) : asset('img/productos/placeholder.jpg') }}"
-                             alt="{{ $p->nombre }}">
+                        <img src="{{ asset('storage/' . $p->imagen) }}" alt="Imagen de {{ $p->nombre }}">
                     </div>
 
                     {{-- Cuerpo del producto --}}

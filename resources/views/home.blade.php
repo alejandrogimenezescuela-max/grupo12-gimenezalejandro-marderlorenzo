@@ -73,7 +73,7 @@
                                 <div class="bjj-product-card">
                                     <div class="bjj-product-display">
                                         @if($p->imagen)
-                                            <img src="{{ asset($p->imagen) }}" alt="{{ $p->nombre }}">
+                                            <img src="{{ asset('storage/' . $p->imagen) }}" alt="Imagen de {{ $p->nombre }}">
                                         @else
                                             <img src="{{ asset('img/productos/placeholder.jpg') }}" alt="Sin imagen">
                                         @endif

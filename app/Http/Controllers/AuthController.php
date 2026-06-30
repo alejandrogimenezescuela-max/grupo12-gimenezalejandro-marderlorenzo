@@ -79,20 +79,30 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Usuario registrado con éxito.');
     }
 
-    // 4. Procesa el inicio de sesión
+   // 4. Procesa el inicio de sesión (CORREGIDO PARA SOFT DELETES / BAJA LÓGICA)
     public function autenticar(Request $request) {
         $credenciales = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
 
+        // 1. Buscamos primero si el usuario existe y NO está dado de baja
+        $usuario = \App\Models\User::where('email', $credenciales['email'])
+                                   ->whereNull('deleted_at')
+                                   ->first();
+
+        // 2. Si no existe o está dado de baja, rebota acá directamente
+        if (!$usuario) {
+            return back()->withErrors([
+                'email' => 'Las credenciales no coinciden o la cuenta se encuentra inactiva.',
+            ]);
+        }
+
+        // 3. Si está activo, intentamos el inicio de sesión normal
         if (auth()->attempt($credenciales)) {
             $request->session()->regenerate();
 
-            /** @var \App\Models\User $usuario */
-            $usuario = auth()->user();
-
-            if ($usuario->rol_id == 1) {
+            if (auth()->user()->rol_id == 1) {
                 return redirect('/admin/dashboard');
             }
 

@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // --- RUTAS PROTEGIDAS: SOLO ADMINISTRADORES (Middleware 'es_admin') ---
+// CÓDIGO CORREGIDO
 Route::middleware(['auth', 'es_admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
@@ -55,7 +56,9 @@ Route::middleware(['auth', 'es_admin'])->prefix('admin')->group(function () {
     Route::get('/editar/{id}', [AdminController::class, 'edit'])->name('producto.edit');
     Route::put('/update/{id}', [AdminController::class, 'update'])->name('producto.update');
     Route::delete('/eliminar/{id}', [AdminController::class, 'destroy'])->name('producto.destroy');
-    Route::get('/admin/ventas', [AdminController::class, 'verVentas'])->name('admin.ventas');
+
+    // CORRECCIÓN AQUÍ: Quitamos el "admin/"
+    Route::get('/ventas', [AdminController::class, 'verVentas'])->name('admin.ventas');
 
     // Gestión de usuarios
     Route::get('/usuarios', [AdminController::class, 'listarUsuarios'])->name('admin.usuarios');
@@ -63,9 +66,9 @@ Route::middleware(['auth', 'es_admin'])->prefix('admin')->group(function () {
     Route::delete('/eliminar-usuario/{id}', [AdminController::class, 'eliminarUsuario'])->name('admin.eliminarUsuario');
     Route::put('/usuarios/{id}', [AdminController::class, 'updateUsuario'])->name('admin.usuarios.update');
 
-    //Gestion de consultas
-    Route::get('/admin/consultas', [ContactoController::class, 'indexAdmin'])->name('admin.consultas');
-    Route::put('/admin/consultas/{id}', [ContactoController::class, 'marcarLeida'])->name('admin.consultas.marcar');
+    // CORRECCIÓN AQUÍ TAMBIÉN: Quitamos el "admin/" de las consultas
+    Route::get('/consultas', [ContactoController::class, 'indexAdmin'])->name('admin.consultas');
+    Route::put('/consultas/{id}', [ContactoController::class, 'marcarLeida'])->name('admin.consultas.marcar');
 });
 
 // --- Rutas del Carrito de Compras ---

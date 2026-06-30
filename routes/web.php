@@ -83,14 +83,4 @@ Route::middleware(['auth'])->group(function () {
     })->name('compra.confirmada'); // <--- ESTE ES EL NOMBRE CORRECTO
 });
 
-// Ruta de emergencia
-Route::get('/crear-admin-seguro', function () {
-    \App\Models\User::create([
-        'nombre' => 'Admin Tatami',
-        'apellido' => 'Principal',
-        'email' => 'admin@gmail.com',
-        'password' => Hash::make('Tatami1234'),
-        'rol_id' => 1
-    ]);
-    return "Admin creado correctamente";
-});
+

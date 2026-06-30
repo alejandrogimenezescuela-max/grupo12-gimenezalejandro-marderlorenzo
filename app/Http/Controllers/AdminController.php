@@ -31,10 +31,32 @@ class AdminController extends Controller
         return view('backend.admin.editar', compact('producto'));
     }
 
-    public function update(Request $request, $id)
+   public function update(Request $request, $id)
     {
+        // 1. Buscamos el producto por su ID
         $producto = Producto::findOrFail($id);
-        $producto->update($request->all());
+
+        // 2. CORRECCIÓN: Validación estricta con tus columnas de DBeaver
+        $dataValidated = $request->validate([
+            'categoria_id' => 'required|integer|exists:categorias,id',
+            'nombre'       => 'required|string|max:255',
+            'descripcion'  => 'required|string',
+            'text'         => 'required|string',
+            'precio'       => 'required|numeric|min:0',
+            'talle'        => 'nullable|string|max:50',
+            'color'        => 'nullable|string|max:50',
+            'stock'        => 'required|integer|min:0',
+            'stock_minimo' => 'required|integer|min:0',
+            'imagen'       => 'nullable|string|max:255',
+        ], [
+            'nombre.required'   => 'El nombre del producto es obligatorio.',
+            'precio.required'   => 'El precio es obligatorio.',
+            'stock.required'    => 'El stock actual es obligatorio.',
+            'categoria_id.required' => 'Debes seleccionar una categoría válida.',
+        ]);
+
+        // 3. Actualizamos de forma segura usando SOLO lo validado
+        $producto->update($dataValidated);
 
         return redirect()->route('admin.productos')->with('success', 'Producto actualizado correctamente');
     }
